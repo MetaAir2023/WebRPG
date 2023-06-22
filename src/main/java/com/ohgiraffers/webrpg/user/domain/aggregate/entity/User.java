@@ -5,8 +5,9 @@ import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 
 public class User {
 
-    private int sequence;
-    private String name;
+    // TODO VO를 통한 level값에 따른 유저 HP, STR, defensivePower 값 처리 [#20]
+    private final int sequence;
+    private final String name;
     private int defaultHP;
     private int defaultSTR;
     private Money money;
