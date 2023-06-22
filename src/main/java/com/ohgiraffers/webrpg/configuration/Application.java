@@ -1,13 +1,13 @@
-package com.ohgiraffers.webrpg;
+package com.ohgiraffers.webrpg.configuration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebrpgApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebrpgApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
