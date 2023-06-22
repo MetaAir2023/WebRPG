@@ -11,6 +11,8 @@ public class User {
     private int defaultSTR;
     private Money money;
     private int upgradeLevel;
+    private int level;
+    private int experiencePoint;
     private ElementalType elementalType;
 
     public User(int sequence, String name, int defaultHP, int defaultSTR, Money money, int upgradeLevel, ElementalType elementalType) {
@@ -69,6 +71,22 @@ public class User {
 
     public void setMoney(Money money) {
         this.money = money;
+    }
+
+    public int getExperiencePoint() {
+        return experiencePoint;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setExperiencePoint(int experiencePoint) {
+        this.experiencePoint = experiencePoint;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Override
