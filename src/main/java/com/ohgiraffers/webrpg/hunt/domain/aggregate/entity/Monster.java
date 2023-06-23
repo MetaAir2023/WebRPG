@@ -25,8 +25,9 @@ public class Monster {
         this.rewardMoney = new RewardMoney(rewardMoney);
         this.monElement = monElement;
     }
-
-
+    public int getSequence() {
+        return sequence;
+    }
     public String getMonsterName() {
         return monsterName;
     }
