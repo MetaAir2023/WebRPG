@@ -7,6 +7,7 @@ import com.ohgiraffers.webrpg.hunt.domain.repository.DomainMapRepository;
 import com.ohgiraffers.webrpg.hunt.domain.repository.DomainRepository;
 import com.ohgiraffers.webrpg.hunt.infra.repository.MapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MonsterAppearDomainService {
