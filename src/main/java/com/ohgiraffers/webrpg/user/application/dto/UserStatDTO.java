@@ -7,8 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserUpgradeStatDTO {
-    private int upgradeLevel;
+public class UserStatDTO {
     private int totalHP;
     private int totalSTR;
 }

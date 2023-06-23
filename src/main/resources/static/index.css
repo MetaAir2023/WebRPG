@@ -1,0 +1,203 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "HallymGothic-Regular";
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#Wrapper{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+}
+.titleMessage {
+    position: relative;
+    margin: 20px;
+    font-size: 12px;
+
+}
+.main{
+    font-size: 200px;
+
+
+    width: 1000px;
+    margin: 50px auto;
+}
+
+#pressMessage{
+    font-size: 40px;
+    opacity: 0.4;
+    margin-left: 50%;
+}
+.titlebox{
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+
+
+/* LoiginPage */
+/* .inputWrapper{
+    width: 40%;
+    height: 100px;
+    margin-left: 30%;
+    color: brown;
+} */
+
+
+.inputbox{
+    width: 50%;
+    height: 80px;
+    position: relative;
+    font-size: 15px;
+    background-color: brown;
+    border-radius: 10px;
+    margin-left:25%;
+    top: -180px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+
+}
+.inputbox::placeholder{
+    font-size: 20px;
+    color: yellow;
+    padding: 20px;
+
+}
+.loginBtn{
+    width: 400px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: brown;
+    color: yellow;
+    font-size:25px ;
+    position: relative;
+    top: -340px;
+    margin-left:30%;
+    text-align: center;
+}
+.logoutBtn{
+    width: 400px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: pink;
+    position: relative;
+    color: yellow;
+    font-size:25px ;
+    top: -530px;
+    margin-left:30%;
+    text-align: center;
+}
+
+/* huntSelectMap */
+.huntContainer{
+    margin-top: 5%;
+    display: flex;
+    /* justify-content: space-around; */
+
+}
+
+.userinfo{
+    width: 400px;
+    height: 500px;
+    display: inherit;
+    margin-left:  300px;  ;
+}
+.userinfo img{
+    width: 300px;
+    height: 400px;
+}
+.userLevel{
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    top: 20px;
+    left:80px
+}
+.usertype{
+    width: 200px;
+    height: 30px;
+    position: relative;
+    top: 400px;
+    left: -180px;
+    background-color: brown;
+    color: yellow;
+    border-radius: 10px;
+}
+.buttonBox{
+    margin: 30px 0 0 300px;
+}
+.buttonBox2{
+    margin: 30px 0 0 100px;
+}
+.huntBtn{
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: brown;
+    color: yellow;
+    font-size:25px ;
+
+
+}
+.huntBtn>.level{
+    margin-left: 50px;
+}
+.huntBtnBox{
+    margin-bottom: 30px;
+}
+/* manupage */
+.btnBox{
+    display: inline;
+}
+.huntmapBtn{
+    width: 400px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: brown;
+    color: yellow;
+    font-size:25px ;
+    position: relative;
+    margin-left:30%;
+    text-align: center;
+    top: -180px;
+}
+.upgradebtn{
+    width: 400px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: brown;
+    color: yellow;
+    font-size:25px ;
+    margin-left:30%;
+    text-align: center;
+    top: -340px;
+    position: relative;
+}
+.backToMenu{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: brown;
+    color: yellow;
+    font-size:25px ;
+    margin: 0 100px;
+    text-align: center;
+    position: relative;
+}
+
+/* hunt1 */
