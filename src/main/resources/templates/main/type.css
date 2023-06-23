@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "HallymGothic-Regular";
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#Wrapper{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: beige;
+}
+.titleMessage {
+  position: relative;
+  margin: 20px;
+  font-size: 12px;
+  
+}
+.main{
+  font-size: 200px;
+
+
+  width: 1000px;
+ margin: 50px auto;
+}
+.titlebox{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+
+/* typemain */
+.typeSelect{
+
+  /* background-color: aliceblue; */
+  width: 1200px;
+
+  margin: 0 auto;
+}
+.typeWrapper{
+  margin-top: 15%;
+  display: flex;
+
+justify-content: space-between;
+}
+.typeBtn{
+  margin-top: 40px;
+  text-align: center;
+}
+.iconImg{
+  width: 200px;
+}
+
+.tbtn{
+  width: 100px;
+  height: 40px;
+  margin-bottom: 20px;
+  background-color: brown;
+  border-radius: 10px;
+  color: yellow;
+}
+.backToMenu{
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: brown;
+  color: yellow;
+  font-size:25px ;
+  margin: 200px 100px;
+  text-align: center;
+  position: relative;
+}
