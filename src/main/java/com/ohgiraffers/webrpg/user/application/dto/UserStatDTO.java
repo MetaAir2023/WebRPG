@@ -10,4 +10,6 @@ import lombok.*;
 public class UserStatDTO {
     private int totalHP;
     private int totalSTR;
+    private int userLevel;
+    private int upgradeLevel;
 }
