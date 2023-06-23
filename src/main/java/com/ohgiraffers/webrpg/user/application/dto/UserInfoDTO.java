@@ -2,15 +2,13 @@ package com.ohgiraffers.webrpg.user.application.dto;
 
 
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserInfoDTO {
 
     private String name;
