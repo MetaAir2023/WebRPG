@@ -5,8 +5,9 @@ import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 
 public class User {
 
-    private int sequence;
-    private String name;
+    // TODO VO를 통한 level값에 따른 유저 HP, STR, defensivePower 값 처리 [#20]
+    private final int sequence;
+    private final String name;
     private int defaultHP;
     private int defaultSTR;
     private Money money;
@@ -15,13 +16,15 @@ public class User {
     private int experiencePoint;
     private ElementalType elementalType;
 
-    public User(int sequence, String name, int defaultHP, int defaultSTR, Money money, int upgradeLevel, ElementalType elementalType) {
+    public User(int sequence, String name, int defaultHP, int defaultSTR, Money money,int level, int  experiencePoint, int upgradeLevel, ElementalType elementalType) {
         this.sequence = sequence;
         this.name = name;
         this.defaultHP = defaultHP;
         this.defaultSTR = defaultSTR;
         this.money = money;
         this.upgradeLevel = upgradeLevel;
+        this.level = level;
+        this.experiencePoint = experiencePoint;
         this.elementalType = elementalType;
     }
 
@@ -92,13 +95,15 @@ public class User {
     @Override
     public String toString() {
         return "User {" +
-                "sequence =" + sequence +
-                "name = " + name +
-                "defaultHP =" + defaultHP +
-                "defaultSTR =" + defaultSTR +
-                "money ="  + money+
-                "upgradeLevel =" + upgradeLevel +
-                "elementalType =" + elementalType +
+                "sequence =" + sequence + " " +
+                "name = " + name + " " +
+                "defaultHP =" + defaultHP + " " +
+                "defaultSTR =" + defaultSTR + " " +
+                "money ="  + money.getValue()+ " " +
+                "Level =" + level + " " +
+                "experiencePoint =" + experiencePoint + " " +
+                "upgradeLevel =" + upgradeLevel + " " +
+                "elementalType =" + elementalType + " " +
                 '}';
     }
 }
