@@ -1,15 +1,15 @@
 package com.ohgiraffers.webrpg.user.application.service;
 
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
+import com.ohgiraffers.webrpg.user.application.dto.UserLevelUpDTO;
+import com.ohgiraffers.webrpg.user.application.dto.UserStatDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserUpgradeStatDTO;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
+import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 import com.ohgiraffers.webrpg.user.domain.repository.UserRepository;
 import com.ohgiraffers.webrpg.user.domain.service.UserDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class UserApplicationService {
@@ -38,21 +38,18 @@ public class UserApplicationService {
 
 
     // TODO 강사님께 질문 : Map<String,Integer> VS DTO
-    private Map<String,Integer> getStat(int userDefaultSTR, int userDefaultHp , int userLevel, int userUpgradeLevel) {
-        Map<String,Integer> result = new HashMap<>();
-        int userTotalSTR = userDomainService.calcTotalStrikingPower(userDefaultSTR, userLevel, userLevel);
+    private UserStatDTO getStat(int userDefaultSTR, int userDefaultHp , int userLevel, int userUpgradeLevel) {
+        int userTotalSTR = userDomainService.calcTotalStrikingPower(userDefaultSTR, userLevel, userUpgradeLevel);
         int userTotalHP = userDomainService.calcTotalHP(userDefaultHp, userLevel, userUpgradeLevel);
-        result.put("totalSTR", userTotalSTR);
-        result.put("totalHP", userTotalHP);
-        return result;
+        return new UserStatDTO(userTotalHP, userTotalSTR);
     }
 
     public UserInfoDTO getInfo(User user) {
-        Map<String,Integer> userStat = getStat(user.getDefaultSTR(), user.getDefaultHP() ,user.getLevel(), user.getUpgradeLevel());
+        UserStatDTO userStat = getStat(user.getDefaultSTR(), user.getDefaultHP() ,user.getLevel(), user.getUpgradeLevel());
         return new UserInfoDTO(
                 user.getName(),
-                userStat.get("totalSTR"),
-                userStat.get("totalHP"),
+                userStat.getTotalHP(),
+                userStat.getTotalSTR(),
                 user.getLevel(),
                 user.getUpgradeLevel(),
                 user.getElementalType()
@@ -60,18 +57,31 @@ public class UserApplicationService {
     }
 
     public UserUpgradeStatDTO getUpgradeStatByFlag(User user, String flag) {
-        int branch;
+        int afterUpgradeLevel;
         switch (flag) {
-            case "success" : branch = 1; break;
-            case "fail" : branch = -1; break;
+            case "success" : afterUpgradeLevel = user.getUpgradeLevel() + 1; break;
+            case "fail" : afterUpgradeLevel = user.getUpgradeLevel() -1; break;
             default:
-                branch = 0; break;
+                afterUpgradeLevel = user.getUpgradeLevel(); break;
         }
-        Map<String,Integer> userStat = getStat(user.getDefaultSTR(), user.getDefaultHP() ,user.getLevel(), user.getUpgradeLevel() + branch);
+        UserStatDTO userStat = getStat(user.getDefaultSTR(), user.getDefaultHP() ,user.getLevel(), afterUpgradeLevel);
         return new UserUpgradeStatDTO(
-                user.getUpgradeLevel(),
-                userStat.get("totalSTR"),
-                userStat.get("totalHP")
+                afterUpgradeLevel,
+                userStat.getTotalHP(),
+                userStat.getTotalSTR()
         );
+    }
+
+    public void saveEXPReward(int sequence, int exp) {
+        User user = userRepository.findUserBySequence(sequence);
+        int possessionEXP = userDomainService.calcPossessionEXP(user.getExperiencePoint(),exp);
+        UserLevelUpDTO userLevelUpDTO = userDomainService.calLevelUp(user.getLevel(), possessionEXP);
+        userRepository.saveLevelUp(user.getSequence(), userLevelUpDTO);
+    }
+
+    public void saveMoneyReward(int sequence, int money) {
+        User user = userRepository.findUserBySequence(sequence);
+        Money balance = userDomainService.calcBalanceMoney(user.getMoney(), money);
+        userRepository.saveMoney(user.getSequence(), balance);
     }
 }
