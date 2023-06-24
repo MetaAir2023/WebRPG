@@ -41,7 +41,7 @@ public class UserApplicationService {
     private UserStatDTO getStat(int userDefaultSTR, int userDefaultHp , int userLevel, int userUpgradeLevel) {
         int userTotalSTR = userDomainService.calcTotalStrikingPower(userDefaultSTR, userLevel, userUpgradeLevel);
         int userTotalHP = userDomainService.calcTotalHP(userDefaultHp, userLevel, userUpgradeLevel);
-        return new UserStatDTO(userTotalHP, userTotalSTR);
+        return new UserStatDTO(userTotalHP, userTotalSTR,userLevel, userUpgradeLevel);
     }
 
     public UserInfoDTO getInfo(User user) {
