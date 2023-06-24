@@ -17,7 +17,7 @@ public class MonsterAppearDomainService {
     private final DomainRepository domainRepository;
 
     @Autowired
-    private MonsterAppearDomainService(DomainMapRepository domainMapRepository, DomainRepository domainRepository){
+    public MonsterAppearDomainService(DomainMapRepository domainMapRepository, DomainRepository domainRepository){
         this.domainMapRepositoryRepository = domainMapRepository;
         this.domainRepository = domainRepository;
     }
