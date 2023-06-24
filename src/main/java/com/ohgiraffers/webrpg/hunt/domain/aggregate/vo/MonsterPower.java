@@ -17,4 +17,8 @@ public class MonsterPower {
         }
 
     }
+
+    public int getValue() {
+        return value;
+    }
 }
