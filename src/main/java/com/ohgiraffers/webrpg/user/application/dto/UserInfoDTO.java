@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class UserInfoDTO {
-
+    private int sequence;
     private String name;
     private int totalHP;
     private int totalSTR;

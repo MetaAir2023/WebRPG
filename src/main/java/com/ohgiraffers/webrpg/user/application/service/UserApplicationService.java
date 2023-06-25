@@ -49,6 +49,7 @@ public class UserApplicationService {
     public UserInfoDTO getInfo(User user) {
         UserStatDTO userStat = getStat(user.getDefaultSTR(), user.getDefaultHP() ,user.getLevel(), user.getUpgradeLevel());
         return new UserInfoDTO(
+                user.getSequence(),
                 user.getName(),
                 userStat.getTotalHP(),
                 userStat.getTotalSTR(),
