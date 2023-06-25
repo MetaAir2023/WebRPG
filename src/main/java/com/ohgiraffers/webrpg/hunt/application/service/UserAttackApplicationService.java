@@ -1,5 +1,7 @@
 package com.ohgiraffers.webrpg.hunt.application.service;
 
+import com.ohgiraffers.webrpg.hunt.application.dto.UserAttackDTO;
+import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
 import com.ohgiraffers.webrpg.hunt.domain.service.UserAttackDomainService;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
@@ -33,4 +35,20 @@ public class UserAttackApplicationService {
         return userAttackDomainService.attack(monsterHp, userATK);
     }
 
+    public UserAttackDTO initUserAttackDTO(Monster monster, UserInfoDTO userInfoDTO) {
+        UserAttackDTO userAttackDTO = new UserAttackDTO();
+        userAttackDTO.setUserInfoDTO(userInfoDTO);
+        userAttackDTO.setUserCurrentHP(userInfoDTO.getTotalHP());
+        userAttackDTO.setMonster(monster);
+        userAttackDTO.setMonsterCurrentHP(monster.getMonsterHp());
+
+
+        return userAttackDTO;
+    }
+
+    public UserAttackDTO attackToMonster(UserAttackDTO userAttackDTO) {
+//        int monsterHpAfterAttack = (userAttackDTO.getMonsterCurrentHP()) - (userAttackDTO.getUserStatDTO().getTotalSTR());
+
+        return userAttackDTO;
+    }
 }
