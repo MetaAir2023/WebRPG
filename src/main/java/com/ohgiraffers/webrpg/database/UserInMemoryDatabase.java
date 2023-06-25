@@ -42,4 +42,7 @@ public abstract class UserInMemoryDatabase {
     public static void saveMoney(int sequence, Money money) {
         userMap.get(sequence).setMoney(money);
     }
+
+    public static void saveElementalType(int sequence, ElementalType elementalType) {userMap.get(sequence).setElementalType(elementalType);}
+
 }

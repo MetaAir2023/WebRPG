@@ -5,6 +5,7 @@ import com.ohgiraffers.webrpg.user.application.dto.UserLevelUpDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserStatDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserUpgradeStatDTO;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
+import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 import com.ohgiraffers.webrpg.user.domain.repository.UserRepository;
 import com.ohgiraffers.webrpg.user.domain.service.UserDomainService;
@@ -70,6 +71,11 @@ public class UserApplicationService {
                 userStat.getTotalHP(),
                 userStat.getTotalSTR()
         );
+    }
+
+    public void saveElementalType(int sequence, String elemental) {
+        ElementalType elementalType = ElementalType.valueOf(elemental);
+        userRepository.saveElementalType(sequence, elementalType);
     }
 
     public void saveEXPReward(int sequence, int exp) {
