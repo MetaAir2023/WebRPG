@@ -10,4 +10,6 @@ public interface UserRepository<T> {
     void saveLevelUp(Integer sequence, UserLevelUpDTO userLevelUpDTO);
 
     void saveMoney(Integer sequence, Money money);
+
+    void saveUpgradeLevel(Integer sequence, Integer upgradeLevel);
 }

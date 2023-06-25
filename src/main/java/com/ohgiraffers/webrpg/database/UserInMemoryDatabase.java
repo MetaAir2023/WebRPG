@@ -42,4 +42,8 @@ public abstract class UserInMemoryDatabase {
     public static void saveMoney(int sequence, Money money) {
         userMap.get(sequence).setMoney(money);
     }
+
+    public static void saveUpgradeLevel(Integer sequence, Integer upgradeLevel) {
+        userMap.get(sequence).setUpgradeLevel(upgradeLevel);
+    }
 }

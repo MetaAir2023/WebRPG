@@ -29,4 +29,9 @@ public class InMemoryUserRepository<T> implements UserRepository<T> {
     public void saveMoney(Integer sequence, Money money) {
         UserInMemoryDatabase.saveMoney(sequence, money);
     }
+
+    @Override
+    public void saveUpgradeLevel(Integer sequence, Integer upgradeLevel) {
+        UserInMemoryDatabase.saveUpgradeLevel(sequence, upgradeLevel);
+    }
 }
