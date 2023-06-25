@@ -35,4 +35,8 @@ public class InMemoryUserRepository<T> implements UserRepository<T> {
     public void saveElementalType(Integer sequence, ElementalType elementalType) {
         UserInMemoryDatabase.saveElementalType(sequence, elementalType);
     }
+  
+    public void saveUpgradeLevel(Integer sequence, Integer upgradeLevel) {
+        UserInMemoryDatabase.saveUpgradeLevel(sequence, upgradeLevel);
+    }
 }

@@ -22,8 +22,8 @@ public class UpgradeDomainService {
         return money > UpgradeCost;
     }
 
-    public int calcBalance(int money, int UpgradeCost){
-        return money - UpgradeCost;
+    public int calcBalance(int money, int upgradeCost){
+        return money - upgradeCost;
     }
 
     private boolean checkMaxUpgradeLevel(int upgradeLevel) {
@@ -43,12 +43,12 @@ public class UpgradeDomainService {
         return updateStochastic <= 1 && updateStochastic >= -1;
     }
 
-    public int calculateUpgradeProbability(int upgradeLevel) {
+    public int executeUpgrade(int upgradeLevel) {
         boolean checkMaxUpgradeLevel = checkMaxUpgradeLevel(upgradeLevel);
         if (!checkMaxUpgradeLevel) {
             return upgradeLevel;
         }
         boolean successUpgrade = checkExistProbabilityDensity(upgradeLevel);
-        return successUpgrade ? upgradeLevel + 1 : 0;
+        return successUpgrade ? upgradeLevel + 1 : upgradeLevel - 1;
     }
 }

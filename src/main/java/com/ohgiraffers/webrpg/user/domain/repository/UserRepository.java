@@ -13,4 +13,7 @@ public interface UserRepository<T> {
     void saveMoney(Integer sequence, Money money);
 
     void saveElementalType(Integer sequence, ElementalType elementalType);
+
+    void saveUpgradeLevel(Integer sequence, Integer upgradeLevel);
+
 }

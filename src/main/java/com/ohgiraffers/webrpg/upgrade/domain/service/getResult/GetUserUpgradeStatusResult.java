@@ -9,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class GetUserResult {
+public class GetUserUpgradeStatusResult {
     private int sequence;
     private int userLevel;
     private int upgradeLevel;

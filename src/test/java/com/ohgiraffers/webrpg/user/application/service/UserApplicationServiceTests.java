@@ -1,6 +1,7 @@
 package com.ohgiraffers.webrpg.user.application.service;
 
 import com.ohgiraffers.webrpg.configuration.Application;
+import com.ohgiraffers.webrpg.upgrade.domain.aggregate.enumtype.FlagEnum;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserUpgradeStatDTO;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
@@ -60,7 +61,7 @@ public class UserApplicationServiceTests {
     public void testGetUpgradeStatByFlagSuccess() {
         int sequence = 1;
         User user = userApplicationService.getUserBySequence(sequence);
-        UserUpgradeStatDTO userUpgradeStatDTO = userApplicationService.getUpgradeStatByFlag(user, "success");
+        UserUpgradeStatDTO userUpgradeStatDTO = userApplicationService.getUpgradeStatByFlag(user, FlagEnum.SUCCESS);
         assertEquals(userUpgradeStatDTO.getUpgradeLevel(), 2);
         assertEquals(userUpgradeStatDTO.getTotalHP(), 4400);
         assertEquals(userUpgradeStatDTO.getTotalSTR(), 800);
@@ -70,7 +71,7 @@ public class UserApplicationServiceTests {
     public void testGetUpgradeStatByFlagFail() {
         int sequence = 1;
         User user = userApplicationService.getUserBySequence(sequence);
-        UserUpgradeStatDTO userUpgradeStatDTO = userApplicationService.getUpgradeStatByFlag(user, "fail");
+        UserUpgradeStatDTO userUpgradeStatDTO = userApplicationService.getUpgradeStatByFlag(user, FlagEnum.FAIL);
         assertEquals(userUpgradeStatDTO.getUpgradeLevel(), 0);
         assertEquals(userUpgradeStatDTO.getTotalHP(), 1100);
         assertEquals(userUpgradeStatDTO.getTotalSTR(), 200);

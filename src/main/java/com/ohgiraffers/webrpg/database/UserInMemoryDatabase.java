@@ -45,4 +45,7 @@ public abstract class UserInMemoryDatabase {
 
     public static void saveElementalType(int sequence, ElementalType elementalType) {userMap.get(sequence).setElementalType(elementalType);}
 
+    public static void saveUpgradeLevel(Integer sequence, Integer upgradeLevel) {
+        userMap.get(sequence).setUpgradeLevel(upgradeLevel);
+    }
 }
