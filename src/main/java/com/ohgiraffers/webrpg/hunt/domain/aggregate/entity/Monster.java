@@ -13,19 +13,22 @@ public class Monster {
     private MonsterPower monsterPower;
     private RewardExp rewardExp;
     private RewardMoney rewardMoney;
-    private MonsterET monElement;
+    private MonsterET monsterElementalType;
 
 
-    public Monster(int sequence, String monsterName, int monsterHp, int monsterPower, int rewardExp, int rewardMoney, MonsterET monElement) {
+    public Monster(int sequence, String monsterName, int monsterHp, int monsterPower, int rewardExp, int rewardMoney, MonsterET monsterElementalType) {
         this.sequence = sequence;
         this.monsterName = monsterName;
         this.monsterHp = new MonsterHp(monsterHp);
         this.monsterPower = new MonsterPower(monsterPower);
         this.rewardExp = new RewardExp(rewardExp);
         this.rewardMoney = new RewardMoney(rewardMoney);
-        this.monElement = monElement;
+        this.monsterElementalType = monsterElementalType;
     }
 
+    public int getSequence() {
+        return sequence;
+    }
 
     public String getMonsterName() {
         return monsterName;
@@ -47,6 +50,6 @@ public class Monster {
         return rewardMoney;
     }
     public MonsterET getMonElement(){
-        return monElement;
+        return monsterElementalType;
     }
 }

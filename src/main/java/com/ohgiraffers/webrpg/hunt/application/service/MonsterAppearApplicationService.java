@@ -20,15 +20,9 @@ public class MonsterAppearApplicationService {
 
 
     public RandomMonsterDTO randomMonster(int mapNum){
-        RandomMonsterDTO randomMon = new RandomMonsterDTO();
         Monster monster = monsterAppearDomainService.randomMapMonster(mapNum);
-        randomMon.setMonsterName(monster.getMonsterName());
-        randomMon.setMonsterHp(monster.getMonsterHp());
-        randomMon.setMonsterPower(monster.getMonsterPower());
-        randomMon.setRewardExp(monster.getRewardExp());
-        randomMon.setRewardMoney(monster.getRewardMoney());
-        randomMon.setMonElement(monster.getMonElement());
-        return randomMon;
+        return new RandomMonsterDTO(monster.getSequence(),monster.getMonsterName(),monster.getMonsterHp(),
+                monster.getMonsterPower(),monster.getRewardExp(),monster.getRewardMoney(),monster.getMonElement());
     }
 
 

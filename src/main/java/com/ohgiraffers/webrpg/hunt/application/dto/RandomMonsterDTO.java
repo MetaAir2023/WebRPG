@@ -20,5 +20,5 @@ public class RandomMonsterDTO {
     private MonsterPower monsterPower;
     private RewardExp rewardExp;
     private RewardMoney rewardMoney;
-    private MonsterET monElement;
+    private MonsterET monsterElementalType;
 }
