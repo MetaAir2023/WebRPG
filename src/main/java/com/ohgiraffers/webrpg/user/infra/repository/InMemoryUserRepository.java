@@ -2,6 +2,7 @@ package com.ohgiraffers.webrpg.user.infra.repository;
 
 import com.ohgiraffers.webrpg.database.UserInMemoryDatabase;
 import com.ohgiraffers.webrpg.user.application.dto.UserLevelUpDTO;
+import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 import com.ohgiraffers.webrpg.user.domain.repository.UserRepository;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,10 @@ public class InMemoryUserRepository<T> implements UserRepository<T> {
     }
 
     @Override
+    public void saveElementalType(Integer sequence, ElementalType elementalType) {
+        UserInMemoryDatabase.saveElementalType(sequence, elementalType);
+    }
+  
     public void saveUpgradeLevel(Integer sequence, Integer upgradeLevel) {
         UserInMemoryDatabase.saveUpgradeLevel(sequence, upgradeLevel);
     }
