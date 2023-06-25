@@ -44,7 +44,7 @@ public class HuntElementalDamage {
                                   MonsterStrDTO monsterStrDTO){
         int userUpLevel = huntExtraElemental.getUserLevel(sequence);
         if(huntExtraElemental.compareET(getElementalDTO)){
-            return 2;
+            return 1 + (userUpLevel * 0.1);
         }
         if(huntExtraElemental.ElementCompatibility(sequence,getElementalDTO) != 0){
             return userUpLevel * 0.1;
