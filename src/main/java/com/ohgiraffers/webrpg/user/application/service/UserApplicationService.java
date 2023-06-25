@@ -1,5 +1,6 @@
 package com.ohgiraffers.webrpg.user.application.service;
 
+import com.ohgiraffers.webrpg.upgrade.domain.aggregate.enumtype.FlagEnum;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserLevelUpDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserStatDTO;
@@ -50,17 +51,18 @@ public class UserApplicationService {
                 user.getName(),
                 userStat.getTotalHP(),
                 userStat.getTotalSTR(),
+                user.getMoney(),
                 user.getLevel(),
                 user.getUpgradeLevel(),
                 user.getElementalType()
         );
     }
 
-    public UserUpgradeStatDTO getUpgradeStatByFlag(User user, String flag) {
+    public UserUpgradeStatDTO getUpgradeStatByFlag(User user, FlagEnum flag) {
         int afterUpgradeLevel;
         switch (flag) {
-            case "success" : afterUpgradeLevel = user.getUpgradeLevel() + 1; break;
-            case "fail" : afterUpgradeLevel = user.getUpgradeLevel() -1; break;
+            case SUCCESS : afterUpgradeLevel = user.getUpgradeLevel() + 1; break;
+            case FAIL : afterUpgradeLevel = user.getUpgradeLevel() -1; break;
             default:
                 afterUpgradeLevel = user.getUpgradeLevel(); break;
         }
@@ -77,6 +79,10 @@ public class UserApplicationService {
         int possessionEXP = userDomainService.calcPossessionEXP(user.getExperiencePoint(),exp);
         UserLevelUpDTO userLevelUpDTO = userDomainService.calLevelUp(user.getLevel(), possessionEXP);
         userRepository.saveLevelUp(user.getSequence(), userLevelUpDTO);
+    }
+
+    public void saveUpgradeLevel(int sequence, int upgradeLevel) {
+        userRepository.saveUpgradeLevel(sequence, upgradeLevel);
     }
 
     public void saveMoneyReward(int sequence, int money) {

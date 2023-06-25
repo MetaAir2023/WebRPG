@@ -9,7 +9,7 @@ import java.util.Map;
 
 public abstract class UserInMemoryDatabase {
 
-    private static final Map<Integer, User> userMap = new HashMap<>();;
+    private static final Map<Integer, User> userMap = new HashMap<>();
     static {
         userMap.put(1,new User(1, "소드마스터",
                 1000, 100,
@@ -41,5 +41,9 @@ public abstract class UserInMemoryDatabase {
 
     public static void saveMoney(int sequence, Money money) {
         userMap.get(sequence).setMoney(money);
+    }
+
+    public static void saveUpgradeLevel(Integer sequence, Integer upgradeLevel) {
+        userMap.get(sequence).setUpgradeLevel(upgradeLevel);
     }
 }
