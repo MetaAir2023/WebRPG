@@ -19,9 +19,13 @@
                 META RPG
             </p>
 
-                <input type="text" placeholder="사용자의 닉네임을 입력해 주세요..." class="inputbox">
-               </input>               
-                <button type="button" class="loginBtn" onclick="location.href='./menu.html'">접속하기</button>
+                <!--<input type="text" placeholder="사용자의 닉네임을 입력해 주세요..." class="inputbox">-->
+
+                <form action="/user/login" method="post">
+                    <input type="text" name="userName" placeholder="사용자의 닉네임을 입력해 주세요..." class="inputbox">
+                    <input type="submit" value="접속하기">
+                    <!--<button type="button" class="loginBtn" onclick="location.href='./menu.html'">접속하기</button>-->
+                </form>
                    
                  <button type="button" class="logoutBtn" onclick="location.href='../../static/index.html'">나가기</button>
             
