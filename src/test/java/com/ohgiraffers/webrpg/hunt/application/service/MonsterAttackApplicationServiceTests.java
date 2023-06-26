@@ -54,7 +54,7 @@ public class MonsterAttackApplicationServiceTests {
     @Test
     @DisplayName("몬스터가 유저를 단 한번 공격하는 속성 공격 Test - 몬스터의 속성이 열세일 경우, 약화된 공격")
     public void testAttackToUser(){
-        MonsterDTO monster = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(2));
+        MonsterDTO monster = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(1));
         User user = userApplicationService.getUserBySequence(1);
         UserInfoDTO userInfo = userApplicationService.getInfo(user);
         int sequence = 1;
@@ -65,13 +65,13 @@ public class MonsterAttackApplicationServiceTests {
         getElementalDTO.setUserET(userET);
         MonsterAttackDTO monsterAttack = monsterAttackApplicationService.initMonsterAttackDTO(monster, userInfo);
         monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, sequence, getElementalDTO);
-        assertEquals(1010, monsterAttack.getUserCurrentHP());
+        assertEquals(920, monsterAttack.getUserCurrentHP());
     }
 
     @Test
     @DisplayName("몬스터가 유저를 단 한번 공격하는 속성 공격 Test - 몬스터의 속성이 동등할 경우, 일반 공격")
     public void testAttackToUser2(){
-        MonsterDTO monster = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(2));
+        MonsterDTO monster = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(1));
         User user = userApplicationService.getUserBySequence(1);
         UserInfoDTO userInfo = userApplicationService.getInfo(user);
         int sequence = 1;
@@ -82,13 +82,13 @@ public class MonsterAttackApplicationServiceTests {
         getElementalDTO.setUserET(userET);
         MonsterAttackDTO monsterAttack = monsterAttackApplicationService.initMonsterAttackDTO(monster, userInfo);
         monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, sequence, getElementalDTO);
-        assertEquals(1000, monsterAttack.getUserCurrentHP());
+        assertEquals(900, monsterAttack.getUserCurrentHP());
     }
 
     @Test
     @DisplayName("몬스터가 유저를 단 한번 공격하는 속성 공격 Test - 몬스터의 속성이 우세할 경우, 강화된 공격")
     public void testAttackToUser3(){
-        MonsterDTO monster = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(2));
+        MonsterDTO monster = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(1));
         User user = userApplicationService.getUserBySequence(1);
         UserInfoDTO userInfo = userApplicationService.getInfo(user);
         int sequence = 1;
@@ -99,13 +99,13 @@ public class MonsterAttackApplicationServiceTests {
         getElementalDTO.setUserET(userET);
         MonsterAttackDTO monsterAttack = monsterAttackApplicationService.initMonsterAttackDTO(monster, userInfo);
         monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, sequence, getElementalDTO);
-        assertEquals(990, monsterAttack.getUserCurrentHP());
+        assertEquals(880, monsterAttack.getUserCurrentHP());
     }
 
     @Test
     @DisplayName("몬스터가 유저를 3번 공격했을 경우, 그 다음 공격 패턴은 -두번 공격-")
     public void testMonsterPatternDoubleAttack(){
-        MonsterDTO monsterDTO = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(2));
+        MonsterDTO monsterDTO = monsterAttackApplicationService.getInfo(monsterInfraRepository.findMonsterBySequence(1));
         monsterDTO.setMonsterPower(100);
         User user = userApplicationService.getUserBySequence(1);
         UserInfoDTO userInfo = userApplicationService.getInfo(user);
