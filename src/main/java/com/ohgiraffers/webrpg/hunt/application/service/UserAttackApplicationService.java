@@ -1,6 +1,8 @@
 package com.ohgiraffers.webrpg.hunt.application.service;
 
+import com.ohgiraffers.webrpg.hunt.application.dto.IntegrateUserAttackDTO;
 import com.ohgiraffers.webrpg.hunt.application.dto.UserAttackDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.UserPatternDTO;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
 import com.ohgiraffers.webrpg.hunt.domain.service.UserAttackDomainService;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
@@ -25,15 +27,11 @@ public class UserAttackApplicationService {
         this.inMemoryUserRepository = inMemoryUserRepository;
     }
 
-    public int getHpPercent(int curHp, int maxHp) {
 
-        return userAttackDomainService.hpCalc(curHp, maxHp);
-    }
 
-    public int huntMonster(boolean flag, int monsterHp, int monsterATK, int userHp, int userATK) {
 
-        return userAttackDomainService.attack(monsterHp, userATK);
-    }
+
+
 
     public UserAttackDTO initUserAttackDTO(Monster monster, UserInfoDTO userInfoDTO) {
         UserAttackDTO userAttackDTO = new UserAttackDTO();
@@ -47,8 +45,42 @@ public class UserAttackApplicationService {
     }
 
     public UserAttackDTO attackToMonster(UserAttackDTO userAttackDTO) {
-//        int monsterHpAfterAttack = (userAttackDTO.getMonsterCurrentHP()) - (userAttackDTO.getUserStatDTO().getTotalSTR());
+        int monsterHpAfterAttack = (userAttackDTO.getMonsterCurrentHP().getValue()) - (userAttackDTO.getUserStatDTO().getTotalSTR());
 
         return userAttackDTO;
+    }
+
+    public UserPatternDTO initUserPatternDTO() {
+        UserPatternDTO userPatternDTO = new UserPatternDTO();
+
+        userPatternDTO.setAttackCnt(0);
+        userPatternDTO.setHeal(0);
+
+        return userPatternDTO;
+    }
+
+    public IntegrateUserAttackDTO attackPattern(IntegrateUserAttackDTO integrateUserAttackDTO) {
+        UserAttackDTO userAttackDTO = integrateUserAttackDTO.getUserAttackDTO();
+        UserPatternDTO userPatternDTO = integrateUserAttackDTO.getUserPatternDTO();
+
+        int healStandard = (int)(userAttackDTO.getUserStatDTO().getTotalHP() * 0.3);
+        if(userPatternDTO.getAttackCnt() != 0 && (userPatternDTO.getAttackCnt() % 3) == 0) {
+            if(userAttackDTO.getUserCurrentHP() <= healStandard && userPatternDTO.getHeal() <= 0) {
+                int heal = (int)(userAttackDTO.getUserInfoDTO().getTotalHP() * 0.1);
+                userAttackDTO.setUserCurrentHP(userAttackDTO.getUserCurrentHP() + heal);
+                userPatternDTO.setHeal(userPatternDTO.getHeal() + 1);
+            } else {
+                userAttackDTO = attackToMonster(userAttackDTO);
+                userAttackDTO = attackToMonster(userAttackDTO);
+                userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 2);
+            }
+        } else {
+            userAttackDTO = attackToMonster(userAttackDTO);
+            userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 1);
+        }
+        integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
+        integrateUserAttackDTO.setUserPatternDTO(userPatternDTO);
+
+        return integrateUserAttackDTO;
     }
 }
