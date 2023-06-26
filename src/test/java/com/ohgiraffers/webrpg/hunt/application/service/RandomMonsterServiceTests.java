@@ -19,11 +19,11 @@ public class RandomMonsterServiceTests {
 
 
     @Test
-    public void methodTests(){
+    public void monsterAppearApplicationService(){
         assertNotNull(monsterAppearApplicationService);
     }
     @Test
-    public void randomMon(){
+    public void randomMonTest(){
         int num = 1;
         RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(num);
         System.out.println("몬스터의 이름 : " + randomMonsterDTO.getMonsterName());
