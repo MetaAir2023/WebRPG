@@ -32,7 +32,6 @@ public class UserAttackApplicationService {
 
 
 
-
     public UserAttackDTO initUserAttackDTO(Monster monster, UserInfoDTO userInfoDTO) {
         UserAttackDTO userAttackDTO = new UserAttackDTO();
         userAttackDTO.setUserInfoDTO(userInfoDTO);
@@ -78,6 +77,14 @@ public class UserAttackApplicationService {
             userAttackDTO = attackToMonster(userAttackDTO);
             userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 1);
         }
+        integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
+        integrateUserAttackDTO.setUserPatternDTO(userPatternDTO);
+
+        return integrateUserAttackDTO;
+    }
+
+    public IntegrateUserAttackDTO initIntegrateUserAttackDTO(UserAttackDTO userAttackDTO, UserPatternDTO userPatternDTO) {
+        IntegrateUserAttackDTO integrateUserAttackDTO = new IntegrateUserAttackDTO();
         integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
         integrateUserAttackDTO.setUserPatternDTO(userPatternDTO);
 
