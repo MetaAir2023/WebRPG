@@ -23,4 +23,5 @@ public class UserAttackDTO {
     private MonsterHp monsterCurrentHP;
     private int userCurrentHP;
 
+
 }

@@ -3,6 +3,7 @@ package com.ohgiraffers.webrpg.hunt.application.service;
 
 import com.ohgiraffers.webrpg.configuration.Application;
 import com.ohgiraffers.webrpg.hunt.application.dto.GetElementalDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.UserGetElementalDTO;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.enumtype.MonsterET;
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class CompareElementalTests {
         getElementalDTO.setUserET(userET);
         getElementalDTO.setMonET(monET);
 
-        double result = huntElementalDamage.totalPercentage(1,getElementalDTO);
+        double result = huntElementalDamage.totalPercentage(1,getElementalDTO, new UserGetElementalDTO());
 
         System.out.println(result);
 

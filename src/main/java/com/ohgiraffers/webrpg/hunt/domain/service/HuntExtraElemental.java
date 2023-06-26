@@ -3,6 +3,7 @@ package com.ohgiraffers.webrpg.hunt.domain.service;
 import com.ohgiraffers.webrpg.hunt.application.dto.GetElementalDTO;
 import com.ohgiraffers.webrpg.hunt.application.dto.MonsterStrDTO;
 import com.ohgiraffers.webrpg.hunt.application.dto.NoEtDmgDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.UserGetElementalDTO;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.enumtype.MonsterET;
 import com.ohgiraffers.webrpg.hunt.infra.service.CalcExtraService;
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
