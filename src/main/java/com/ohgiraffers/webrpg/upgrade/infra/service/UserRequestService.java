@@ -27,37 +27,39 @@ public class UserRequestService implements RequestService {
     public GetUserUpgradeStatResult getUserUpgradeStats(int sequence, FlagEnum flag) {
         User user = userApplicationService.getUserBySequence(sequence);
         UserUpgradeStatDTO userUpgradeStatDTO = userApplicationService.getUpgradeStatByFlag(user,flag);
-        return new GetUserUpgradeStatResult(
-                userUpgradeStatDTO.getUpgradeLevel(),
-                userUpgradeStatDTO.getTotalHP(),
-                userUpgradeStatDTO.getTotalSTR()
-        );
+        return GetUserUpgradeStatResult.builder()
+                .upgradeLevel(userUpgradeStatDTO.getUpgradeLevel())
+                .totalHP(userUpgradeStatDTO.getTotalHP())
+                .totalSTR(userUpgradeStatDTO.getTotalSTR())
+                .build();
     }
 
     @Override
     public GetUserInfoResult getUserInfo(int sequence) {
         User user = userApplicationService.getUserBySequence(sequence);
         UserInfoDTO userInfoDTO = userApplicationService.getInfo(user);
-        return new GetUserInfoResult(
-                userInfoDTO.getName(),
-                userInfoDTO.getTotalHP(),
-                userInfoDTO.getTotalSTR(),
-                userInfoDTO.getMoney(),
-                userInfoDTO.getUserLevel(),
-                userInfoDTO.getUpgradeLevel(),
-                userInfoDTO.getElementalType()
-        );
+
+        return GetUserInfoResult.builder()
+                .name(userInfoDTO.getName())
+                .userLevel(userInfoDTO.getUserLevel())
+                .upgradeLevel(userInfoDTO.getUpgradeLevel())
+                .totalHP(userInfoDTO.getTotalHP())
+                .totalSTR(userInfoDTO.getTotalSTR())
+                .elementalType(userInfoDTO.getElementalType())
+                .Money(userInfoDTO.getMoney())
+                .build();
     }
 
     @Override
     public GetUserUpgradeStatusResult getUserUpgradeStatus(int sequence) {
         User user = userApplicationService.getUserBySequence(sequence);
-        return new GetUserUpgradeStatusResult(
-                user.getSequence(),
-                user.getLevel(),
-                user.getUpgradeLevel(),
-                user.getMoney().getValue()
-        );
+
+        return GetUserUpgradeStatusResult.builder()
+                .sequence(user.getSequence())
+                .userLevel(user.getLevel())
+                .upgradeLevel(user.getUpgradeLevel())
+                .money(user.getMoney().getValue())
+                .build();
     }
 
     @Override
