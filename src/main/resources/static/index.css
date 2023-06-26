@@ -1,12 +1,39 @@
 
+@font-face {
+    font-family: 'neon';
+    src: url('/css/folkard/folkard_.ttf') format('truetype');
+}
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "HallymGothic-Regular";
+    font-family: "neon";
     list-style: none;
 }
 
+body{
+    font-family: "neon";
+    animation: fadein 2000ms ease-out;
+    -moz-animation: fadein 2000ms ease-out; /* Firefox */
+    -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
+    -o-animation: fadein 2000ms ease-out; /* Opera */
+}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-moz-keyframes fadein { /* Firefosx */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-o-keyframes fadein { /* Opera */
+    from {opacity:0;}
+    to {opacity: 1;}
+}
 a {
     text-decoration: none;
     color: black;
@@ -17,6 +44,24 @@ a {
     height: 100%;
     position: fixed;
     background-color: beige;
+    background:url("/img/back/배경 1,2.jpg") no-repeat center center;
+}
+#Wrapper2{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/back/배경 3.jpg") no-repeat center center;
+
+}
+#Wrapper3{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/back/던전 입구.jpg") no-repeat center center;
+    background-size: 100% 100%;
+
 }
 .titleMessage {
     position: relative;
@@ -27,21 +72,22 @@ a {
 .main{
     font-size: 200px;
 
-
-    width: 1000px;
+text-align: center;
+    width: 1500px;
     margin: 50px auto;
 }
 
 #pressMessage{
     font-size: 40px;
-    opacity: 0.4;
+    opacity: 0.7;
     margin-left: 50%;
+    margin-top: 10%;
 }
 .titlebox{
     width: 300px;
     margin: 0 auto;
     text-align: center;
-
+    color: white;
 }
 
 
@@ -54,25 +100,31 @@ a {
     color: brown;
 } */
 
+.formlogin{
 
+    width: 1000px;
+    margin:0 auto;
+    text-align: center;
+}
 .inputbox{
-    width: 50%;
+    width: 800px;
     height: 80px;
-    position: relative;
+
     font-size: 15px;
+
     background-color: brown;
     border-radius: 10px;
-    margin-left:25%;
-    top: -180px;
+    margin-bottom: 30px;
+
     text-align: center;
-    color: white;
+
     font-size: 20px;
 
 }
 .inputbox::placeholder{
     font-size: 20px;
     color: yellow;
-    padding: 20px;
+    /*padding: 20px;*/
 
 }
 .loginBtn{
@@ -82,9 +134,9 @@ a {
     background-color: brown;
     color: yellow;
     font-size:25px ;
-    position: relative;
-    top: -340px;
-    margin-left:30%;
+
+
+
     text-align: center;
 }
 .logoutBtn{
@@ -92,12 +144,15 @@ a {
     height: 80px;
     border-radius: 10px;
     background-color: pink;
-    position: relative;
+
     color: yellow;
     font-size:25px ;
-    top: -530px;
-    margin-left:30%;
+
     text-align: center;
+}
+.logoutBtnBox{
+    width: 400px;
+    margin: 30px auto;
 }
 
 /* huntSelectMap */
@@ -106,6 +161,12 @@ a {
     display: flex;
     /* justify-content: space-around; */
 
+}
+.titleW{
+    width: 600px;
+    margin: 30px auto;
+    text-align: center;
+    color: white;
 }
 
 .userinfo{
@@ -129,8 +190,8 @@ a {
     left:80px
 }
 .usertype{
-    width: 200px;
-    height: 30px;
+    width: 300px;
+    height: 60px;
     position: relative;
     top: 400px;
     left: -180px;
@@ -154,27 +215,37 @@ a {
 
 
 }
-.huntBtn>.level{
+.huntBtnBox .level{
     margin-left: 50px;
+    margin-top: 10px;
+    color: white;
 }
 .huntBtnBox{
     margin-bottom: 30px;
 }
 /* manupage */
 .btnBox{
-    display: inline;
+
 }
+.menuBtn{
+    display: inline;
+    width: 500px;
+    height: 80px;
+
+}
+
 .huntmapBtn{
+
     width: 400px;
     height: 80px;
     border-radius: 10px;
     background-color: brown;
     color: yellow;
     font-size:25px ;
-    position: relative;
-    margin-left:30%;
-    text-align: center;
-    top: -180px;
+margin: 0 auto;
+
+
+
 }
 .upgradebtn{
     width: 400px;
@@ -183,10 +254,9 @@ a {
     background-color: brown;
     color: yellow;
     font-size:25px ;
-    margin-left:30%;
+
     text-align: center;
-    top: -340px;
-    position: relative;
+
 }
 .backToMenu{
     width: 200px;
@@ -195,9 +265,9 @@ a {
     background-color: brown;
     color: yellow;
     font-size:25px ;
-    margin: 0 100px;
+    margin: 0 0 100px 100px;
     text-align: center;
-    position: relative;
+
 }
 
 /* hunt1 */
