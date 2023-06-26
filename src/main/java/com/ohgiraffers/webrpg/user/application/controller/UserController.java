@@ -45,17 +45,13 @@ public class UserController {
         String userName= session.getAttribute("userName").toString();
         UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
 //        mv.addAttribute("userInfoDTO",userInfoDTO);
-            mv.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
+        mv.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
         mv.addAttribute("userLevel",userInfoDTO.getUserLevel());
-       mv.addAttribute("userTotalSTR",userInfoDTO.getTotalSTR());
+        mv.addAttribute("userTotalSTR",userInfoDTO.getTotalSTR());
 //        System.out.println("userInfoDTO = " + userInfoDTO.getTotalHP());
         return  "hunt/huntSelectMap";
     }
 
-    @GetMapping("logout")
-    public String logout(HttpSession session){
-        session.removeAttribute("userSequence");
-        return "/index.html";
-    }
 
 }
+
