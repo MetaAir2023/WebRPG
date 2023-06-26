@@ -10,13 +10,13 @@ public class MonsterDB {
 
     public MonsterDB(){
         this.monsterList = new HashMap<>();
-        this.monsterList.put(1, new Monster(1,"네파리안", 1, 1, 1,10,null));
-        this.monsterList.put(2, new Monster(2,"크툰", 100, 100, 100, 500,null));
+        this.monsterList.put(1, new Monster(1,"네파리안", 1, 1, 1,100,null));
+        this.monsterList.put(2, new Monster(2,"크툰", 100, 100, 100, 400,null));
         // 오리지널 중간
-        this.monsterList.put(3, new Monster(3,"무적의 오시리안", 5, 5, 5, 100,null));
-        this.monsterList.put(4, new Monster(4,"오닉시아", 5, 5, 5, 100,null));
-        this.monsterList.put(5, new Monster(5,"학카르", 5, 5, 5, 100,null));
-        this.monsterList.put(6, new Monster(6,"켈투자드", 5, 5, 5, 100,null));
+        this.monsterList.put(3, new Monster(3,"무적의 오시리안", 5, 5, 5, 200,null));
+        this.monsterList.put(4, new Monster(4,"오닉시아", 5, 5, 5, 250,null));
+        this.monsterList.put(5, new Monster(5,"학카르", 5, 5, 5, 300,null));
+        this.monsterList.put(6, new Monster(6,"켈투자드", 5, 5, 5,1000,null));
         /// 오리지널 최종
         this.monsterList.put(7, new Monster(7,"일리단 스톰레이지", 5, 5, 5, 100,null));
         // 불타는 성전 중간

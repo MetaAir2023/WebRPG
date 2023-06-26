@@ -20,25 +20,25 @@ public class HuntExtraElemental {
 
 
 
-    public double ElementCompatibility(int sequence ,GetElementalDTO getElementalDTO){
-            Enum monET =getElementalDTO.getMonET();
-            Enum userET = getElementalDTO.getUserET();
+    public boolean ElementCompatibility(int sequence ,GetElementalDTO getElementalDTO){
+            MonsterET monET =getElementalDTO.getMonET();
+            ElementalType userET = getElementalDTO.getUserET();
             int userUpLevel = getUserLevel(sequence);
         if (userET == ElementalType.FIRE && monET== MonsterET.FIRE){
 
-            return 0;
+            return true;
         }if (userET == ElementalType.WATER && monET == MonsterET.WATER){
 
-            return 0;
+            return true;
         }if (userET == ElementalType.GRASS && monET == MonsterET.GRASS){
 
-            return 0;
+            return true;
         }
-        return userUpLevel * 0.1;
+        return false;
     }
     public boolean compareET(GetElementalDTO getElementalDTO){
-        Enum userET = getElementalDTO.getUserET();
-        Enum monET = getElementalDTO.getMonET();
+        ElementalType userET = getElementalDTO.getUserET();
+        MonsterET monET = getElementalDTO.getMonET();
         if (userET == ElementalType.FIRE && monET== MonsterET.GRASS){
 
             return true;
