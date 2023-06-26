@@ -26,9 +26,10 @@ public class UserController {
 
     @GetMapping("login")
     public String login(){
-        return "main/loginPage";
+        return "user/loginPage";
     }
-
+    @GetMapping("menu")
+    public String menu(){return "user/menu";}
     @PostMapping("login")
     public String checkUser(HttpSession session, @ModelAttribute("login") loginDTO login) {
         UserInfoDTO user = userApplicationService.getInfo(userApplicationService.getUserByName(login.getUserName()));
@@ -36,7 +37,7 @@ public class UserController {
         session.setAttribute("userName", user.getName());
         System.out.println("userSequence : " + session.getAttribute("userSequence"));
 
-        return "main/menu";
+        return "user/menu";
     }
     @GetMapping("info")
     public String info(HttpSession session, Model mv){
