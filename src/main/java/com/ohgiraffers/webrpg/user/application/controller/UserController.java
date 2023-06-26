@@ -52,5 +52,4 @@ public class UserController {
         return  "hunt/huntSelectMap";
     }
 
-
 }
