@@ -1,9 +1,6 @@
 package com.ohgiraffers.webrpg.hunt.application.controller;
 
-import com.ohgiraffers.webrpg.hunt.application.dto.IntegrateUserAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.MonsterUseDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.UserAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.UserPatternDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.*;
 import com.ohgiraffers.webrpg.hunt.application.service.UserAttackApplicationService;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
@@ -41,10 +38,11 @@ public class UserAttackController {
             return userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
         }
 
-        public IntegrateUserAttackDTO userAttackToMonster(IntegrateUserAttackDTO integrateUserAttackDTO) {
-            userAttackApplicationService.attackPattern(integrateUserAttackDTO);
+        public IntegrateUserAttackDTO userAttackToMonster(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO) {
+            userAttackApplicationService.attackPattern(integrateUserAttackDTO, sequence, userGetElementalDTO);
 
             return integrateUserAttackDTO;
         }
+
 }
 
