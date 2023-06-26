@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MonsterAttackApplicationService {
     private final InfraRepository huntInfraRepository;
+    private final HuntElementalDamage huntElementalDamage;
 
     @Autowired
-    public MonsterAttackApplicationService(InfraRepository huntInfraRepository) {
+    public MonsterAttackApplicationService(InfraRepository huntInfraRepository, HuntElementalDamage huntElementalDamage) {
         this.huntInfraRepository = huntInfraRepository;
+        this.huntElementalDamage = huntElementalDamage;
     }
 
     public MonsterDTO getInfo(Monster monster) {
@@ -52,7 +54,9 @@ public class MonsterAttackApplicationService {
         return integrateMonsterAttackDTO;
     }
 
+//    public MonsterAttackDTO attackToUser(MonsterAttackDTO monsterAttackDTO, HuntElementalDamage huntElementalDamage) {
     public MonsterAttackDTO attackToUser(MonsterAttackDTO monsterAttackDTO) {
+
         int userHpAfterAttack = monsterAttackDTO.getUserCurrentHP() - monsterAttackDTO.getMonster().getMonsterPower();
         monsterAttackDTO.setUserCurrentHP(userHpAfterAttack);
         return monsterAttackDTO;

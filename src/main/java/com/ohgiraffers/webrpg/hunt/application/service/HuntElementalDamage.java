@@ -1,9 +1,6 @@
 package com.ohgiraffers.webrpg.hunt.application.service;
 
-import com.ohgiraffers.webrpg.hunt.application.dto.ElementDamageDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.GetElementalDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.MonsterStrDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.NoEtDmgDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.*;
 import com.ohgiraffers.webrpg.hunt.domain.repository.DomainRepository;
 import com.ohgiraffers.webrpg.hunt.domain.service.HuntExtraElemental;
 import com.ohgiraffers.webrpg.user.domain.repository.UserRepository;
@@ -53,6 +50,13 @@ public class HuntElementalDamage {
 
 
     }
+
+//    public int additionalMonsterElementATK(MonsterAttackDTO monsterAttackDTO, GetElementalDTO getElementalDTO){
+//        Enum monsterElement = getElementalDTO.getMonET();
+//        Enum userElement = getElementalDTO.getUserET();
+//        if(monsterElement)
+//
+//    }
 
 
 }
