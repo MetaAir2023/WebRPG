@@ -38,8 +38,8 @@ public class UserAttackController {
             return userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
         }
 
-        public IntegrateUserAttackDTO userAttackToMonster(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO) {
-            userAttackApplicationService.attackPattern(integrateUserAttackDTO, sequence, userGetElementalDTO);
+        public IntegrateUserAttackDTO userAttackToMonster(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
+            userAttackApplicationService.attackPattern(integrateUserAttackDTO, sequence, userGetElementalDTO, getElementalDTO);
 
             return integrateUserAttackDTO;
         }
