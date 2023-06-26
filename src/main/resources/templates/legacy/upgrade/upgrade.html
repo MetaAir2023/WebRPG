@@ -19,7 +19,7 @@
 <body>
     <div id="Wrapper">
         <div id="title">
-            <p class="titleMessage" onclick="location.href='../../static/index.html'">소드마스터의 시대가 오고있다!</p>
+            <p class="titleMessage" onclick="location.href='../../../static/index.html'">소드마스터의 시대가 오고있다!</p>
         </div>
         <div class="titlebox">
             <h1>Enchant</h1>
@@ -27,8 +27,8 @@
 
         <div class="upgraderesult">
            <div>
-            <p>현재 강화 레벨: 1</p>
-            <p>총 공력력: 15000 ATK</p>
+            <p th:text="|현재 강화 레벨 : ${current.getUpgradeLevel()}|"></p>
+            <p th:text="|총 공력력 : ${current.getTotalSTR()} ATK|"></p>
            </div>
         </div>
 
@@ -37,19 +37,21 @@
         <div class="upgradeProbability">
             <div class="upgradeSuccess">
                 <p>강화 성공 시</p>
-                <p>강화 레벨 : 현재 + 1</p>
-                <p>총 공격력 : 15000 ATK (@@%) </p>
+                <p th:text="| 강화 레벨 : ${success.getUpgradeLevel()}|"></p>
+                <p th:text="|총 공력력 : ${success.getTotalSTR()} ATK|"></p>
             </div>
             <div class="upgradeFail">
                 <p>강화 실패 시</p>
-                <p>강화 레벨 : 현재 - 1</p>
-                <p>총 공격력 : 15000 ATK (@@%) </p>
+                <p th:text="| 강화 레벨 : ${fail.getUpgradeLevel()}|"></p>
+                <p th:text="|총 공력력 : ${fail.getTotalSTR()} ATK|"></p>
             </div>
         </div>
 
    
             <div class="buttonBox1">
-                <button class="upgradeBtn" onclick="location.href='./upgradeResult.html'">강화 하기</button>
+                <form action="/upgrade/upgradeResult" method="post">
+                    <button class="upgradeBtn" type="submit">강화 하기</button>
+                </form>
             </div>
             <div>
                 <button class="backBtn" onclick="location.href='../main/menu.html'">뒤로 가기</button>

@@ -21,8 +21,8 @@ public class HuntExtraElemental {
 
 
     public boolean ElementCompatibility(int sequence ,GetElementalDTO getElementalDTO){
-            Enum monET =getElementalDTO.getMonET();
-            Enum userET = getElementalDTO.getUserET();
+            MonsterET monET =getElementalDTO.getMonET();
+            ElementalType userET = getElementalDTO.getUserET();
             int userUpLevel = getUserLevel(sequence);
         if (userET == ElementalType.FIRE && monET== MonsterET.FIRE){
 
@@ -37,8 +37,8 @@ public class HuntExtraElemental {
         return false;
     }
     public boolean compareET(GetElementalDTO getElementalDTO){
-        Enum userET = getElementalDTO.getUserET();
-        Enum monET = getElementalDTO.getMonET();
+        ElementalType userET = getElementalDTO.getUserET();
+        MonsterET monET = getElementalDTO.getMonET();
         if (userET == ElementalType.FIRE && monET== MonsterET.GRASS){
 
             return true;

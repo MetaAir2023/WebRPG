@@ -4,8 +4,10 @@ import com.ohgiraffers.webrpg.hunt.application.dto.GetElementalDTO;
 import com.ohgiraffers.webrpg.hunt.application.dto.MonsterStrDTO;
 import com.ohgiraffers.webrpg.hunt.application.dto.NoEtDmgDTO;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
+import com.ohgiraffers.webrpg.hunt.domain.aggregate.enumtype.MonsterET;
 import com.ohgiraffers.webrpg.user.application.service.UserApplicationService;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
+import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import com.ohgiraffers.webrpg.user.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +29,8 @@ public class CalcExtraService {
 
     public GetElementalDTO getET(User user, Monster monster){
         GetElementalDTO playerET = new GetElementalDTO();
-        Enum userET = user.getElementalType();
-        Enum monET = monster.getMonElement();
+        ElementalType userET = user.getElementalType();
+        MonsterET monET = monster.getMonElement();
         playerET.setMonET(monET);
         playerET.setUserET(userET);
         return playerET;
