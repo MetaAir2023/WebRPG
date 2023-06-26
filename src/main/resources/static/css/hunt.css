@@ -1,0 +1,238 @@
+@font-face {
+    font-family: 'neon';
+    src: url('/css/folkard/folkard_.ttf') format('truetype');
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "neon";
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+body{    font-family: "neon";
+    color: white;
+    animation: fadein 2000ms ease-out;
+    -moz-animation: fadein 2000ms ease-out; /* Firefox */
+    -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
+    -o-animation: fadein 2000ms ease-out; /* Opera */
+}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-o-keyframes fadein { /* Opera */
+    from {opacity:0;}
+    to {opacity: 1;}
+}
+#Wrapper1{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/background/낙스라마스.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
+#Wrapper2{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/background/태양샘 고원.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
+#Wrapper3{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/background/얼음왕관 성채.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
+#Wrapper4{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/background/용의 영혼.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}#Wrapper5{
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     background-color: beige;
+     background:url("/img/background/오그리마.jpg") no-repeat center center;
+     background-size: 100% 100%;
+ }#Wrapper6{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background-color: beige;
+      background:url("/img/background/지옥불 성채.jpg") no-repeat center center;
+      background-size: 100% 100%;
+  }#Wrapper7{
+       width: 100%;
+       height: 100%;
+       position: fixed;
+       background-color: beige;
+       background:url("/img/background/안토러스.jpg") no-repeat center center;
+       background-size: 100% 100%;
+   }
+#Wrapper8{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/background/나이알로사.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}#Wrapper9{
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     background-color: beige;
+     background:url("/img/background/태초의 존재의 매장터.jpg") no-repeat center center;
+     background-size: 100% 100%;
+ }#Wrapper10{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background-color: beige;
+      background:url("/img/background/아베루스.jpg") no-repeat center center;
+      background-size: 100% 100%;
+  }
+
+
+
+#WrapperResult{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/back/보물상자.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.titleMessage {
+    position: relative;
+    margin: 20px;
+    font-size: 12px;
+    
+}
+.main{
+    font-size: 200px;
+
+
+    width: 1000px;
+   margin: 50px auto;
+}
+.titlebox{
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+  }
+  
+
+
+/* main */
+.container{
+    /* background-color: white; */
+}
+.huntWrapper{
+    display: flex;
+    /* justify-content: space-between; */
+    margin-top: 50px;
+}
+.statusWrapper .status{
+    text-align: center;
+    color: white;
+}
+.status .hp img{
+    width: 300px;
+    height: 50px;
+}
+.cardimg img{
+    width: 300px;
+}
+
+.action{
+    width: 1000px;
+}
+.actionWrapper{
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.userEffect>.UEImg{
+    width:200px;
+
+    visibility: hidden;
+   
+    float: left;
+    transition: all 5s;
+    
+}
+
+.monsterEffect>.MEImg{
+    width: 200px;
+    visibility: hidden;
+  
+    transition: all 5s;
+    
+ 
+}
+.btnBox{
+ 
+
+    margin:  200px 35%;
+}
+.btnBox button{
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+    background-color: brown;
+    border-radius: 10px;
+    color: yellow;
+}
+
+/* huntResultPage */
+.result{
+    width: 400px;
+   
+
+    /* background-color: aliceblue; */
+    margin: 250px auto;
+    text-align: center;
+    ;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+.buttonBox{
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+.buttonBox div .resultBtn{
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+    background-color: brown;
+    border-radius: 10px;
+    color: yellow;
+   
+}

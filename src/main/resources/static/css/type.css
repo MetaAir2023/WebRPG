@@ -1,0 +1,109 @@
+
+@font-face {
+  font-family: 'neon';
+  src: url('/css/folkard/folkard_.ttf') format('truetype');
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "neon";
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+body{
+  font-family: "neon";
+  animation: fadein 2000ms ease-out;
+  -moz-animation: fadein 2000ms ease-out; /* Firefox */
+  -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
+  -o-animation: fadein 2000ms ease-out; /* Opera */
+}
+@keyframes fadein {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+@-moz-keyframes fadein { /* Firefox */
+  from {opacity:0;}
+  to {opacity:1;}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {opacity:0;}
+  to {opacity:1;}
+}
+@-o-keyframes fadein { /* Opera */
+  from {opacity:0;}
+  to {opacity: 1;}
+}
+#Wrapper{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: beige;
+  background:url("/img/back/속성 설정.jpg") no-repeat center center;
+  background-size: 100% 100%;
+}
+.titleMessage {
+  position: relative;
+  margin: 20px;
+  font-size: 12px;
+  
+}
+.main{
+  font-size: 200px;
+
+
+  width: 1000px;
+ margin: 50px auto;
+}
+.titlebox{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+/* typemain */
+.typeSelect{
+
+  /* background-color: aliceblue; */
+  width: 1200px;
+
+  margin: 0 auto;
+}
+.typeWrapper{
+  margin-top: 400px;
+  display: flex;
+
+justify-content: space-between;
+}
+.typeBtn{
+  margin-top: 40px;
+  text-align: center;
+}
+.iconImg{
+  width: 200px;
+}
+
+.tbtn{
+  width: 100px;
+  height: 40px;
+
+  background-color: brown;
+  border-radius: 10px;
+  color: yellow;
+}
+.backToMenu{
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: brown;
+  color: yellow;
+  font-size:25px ;
+  margin: 200px 100px;
+  text-align: center;
+  position: relative;
+}
