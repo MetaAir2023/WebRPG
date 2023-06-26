@@ -51,6 +51,7 @@ public class UserController {
 //        System.out.println("userInfoDTO = " + userInfoDTO.getTotalHP());
         return  "hunt/huntSelectMap";
     }
+
     @GetMapping("logout")
     public String logout(HttpSession session){
         session.removeAttribute("userSequence");
