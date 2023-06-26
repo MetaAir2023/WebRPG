@@ -26,9 +26,11 @@ public class Monster {
         this.monsterElementalType = monsterElementalType;
     }
 
+
     public int getSequence() {
         return sequence;
     }
+
 
     public String getMonsterName() {
         return monsterName;

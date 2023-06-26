@@ -14,4 +14,7 @@ public class RewardMoney {
         }
 
     }
+    public int getValue() {
+        return value;
+    }
 }
