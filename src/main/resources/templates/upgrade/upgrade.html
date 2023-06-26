@@ -3,21 +3,6 @@
 
 <head>
     <link rel="stylesheet" href="upgrade.css">
-    <script>
-        jQuery(function($) {
-            $("body").css("display", "none");
-            $("body").fadeIn(2000);
-            $("a.transition").click(function(event){
-                event.preventDefault();
-                linkLocation = this.href;
-                $("body").fadeOut(1000, redirectPage);
-            });
-            function redirectPage() {
-                window.location = linkLocation;
-            }
-        });
-    </script>
-    <link rel="stylesheet" href="/css/upgrade.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -35,52 +20,31 @@
 <div id="Wrapper">
     <div id="title">
         <p class="titleMessage" onclick="location.href='../../static/index.html'">소드마스터의 시대가 오고있다!</p>
-        <p class="titleMessage" onclick="location.href='/index.html'">소드마스터의 시대가 오고있다!</p>
     </div>
     <div class="titlebox">
-        <h1>Enchant</h1>
+        <h1>강화 결과</h1>
     </div>
 
-    <div class="upgraderesult">
-        <div>
-            <p>현재 강화 레벨: 1</p>
-            <p>총 공력력: 15000 ATK</p>
-            <p>Current Enhancement Level: 1</p>
-            <p>Total STR: 15000 ATK</p>
+    <div class="result">
+        <div class="statusWrapper">
+            <div class="status">
+                <h2>유저</h2>
+                <p class="hp"><img src="../img/hpbar.webp" alt=""></p>
+            </div>
+            <div class="cardimg">
+                <img src="http://www.hearthcards.net/cards/ac01cc14.png" alt="">
+            </div>
         </div>
     </div>
 
+    <div class="buttonBox">
+
+        <button class="resultBtn" onclick="location.href='../main/menu.html'">메인으로 가기</button>
 
 
-    <div class="upgradeProbability">
-        <div class="upgradeSuccess">
-            <p>강화 성공 시</p>
-            <p>강화 레벨 : 현재 + 1</p>
-            <p>총 공격력 : 15000 ATK (@@%) </p>
-            <p>Upgrade Success</p>
-            <p>Upgrade Level : 현재 + 1</p>
-            <p>Total STR : 15000 ATK (@@%) </p>
-        </div>
-        <div class="upgradeFail">
-            <p>강화 실패 시</p>
-            <p>강화 레벨 : 현재 - 1</p>
-            <p>총 공격력 : 15000 ATK (@@%) </p>
-            <p>Upgrade Fail</p>
-            <p>Upgrade Level : 현재 - 1</p>
-            <p>Total STR : 15000 ATK (@@%) </p>
-        </div>
+        <button class="resultBtn" onclick="location.href='./upgrade.html'">강화 하기</button>
+
     </div>
-
-
-    <div class="buttonBox1">
-        <button class="upgradeBtn" onclick="location.href='./upgradeResult.html'">강화 하기</button>
-        <button class="upgradeBtn" onclick="location.href='/upgrade/upgradeResult'">Upgrade</button>
-    </div>
-    <div>
-        <button class="backBtn" onclick="location.href='../main/menu.html'">뒤로 가기</button>
-        <button class="backBtn" onclick="location.href='/user/menu'">Menu</button>
-    </div>
-
 
 </div>
 </body>
