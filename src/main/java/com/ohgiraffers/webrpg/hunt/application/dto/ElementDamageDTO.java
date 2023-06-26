@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
 public class ElementDamageDTO {
 
     private double userATK;
-    private int monsterATK;
+    private double monsterATK;
 
 }
