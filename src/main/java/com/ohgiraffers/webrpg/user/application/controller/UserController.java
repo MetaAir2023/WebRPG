@@ -31,7 +31,6 @@ public class UserController {
 
     @PostMapping("login")
     public String checkUser(HttpSession session, @ModelAttribute("login") loginDTO login) {
-        System.out.println(login);
         UserInfoDTO user = userApplicationService.getInfo(userApplicationService.getUserByName(login.getUserName()));
         session.setAttribute("userSequence", user.getSequence());
         session.setAttribute("userName", user.getName());

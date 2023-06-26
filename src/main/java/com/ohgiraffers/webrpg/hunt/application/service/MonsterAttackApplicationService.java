@@ -1,9 +1,6 @@
 package com.ohgiraffers.webrpg.hunt.application.service;
 
-import com.ohgiraffers.webrpg.hunt.application.dto.IntegrateMonsterAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.MonsterAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.MonsterDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.MonsterPatternDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.*;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
 import com.ohgiraffers.webrpg.hunt.infra.repository.InfraRepository;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
@@ -13,10 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MonsterAttackApplicationService {
     private final InfraRepository huntInfraRepository;
+    private final HuntElementalDamage huntElementalDamage;
 
     @Autowired
-    public MonsterAttackApplicationService(InfraRepository huntInfraRepository) {
+    public MonsterAttackApplicationService(InfraRepository huntInfraRepository, HuntElementalDamage huntElementalDamage) {
         this.huntInfraRepository = huntInfraRepository;
+        this.huntElementalDamage = huntElementalDamage;
     }
 
     public MonsterDTO getInfo(Monster monster) {
@@ -52,13 +51,14 @@ public class MonsterAttackApplicationService {
         return integrateMonsterAttackDTO;
     }
 
-    public MonsterAttackDTO attackToUser(MonsterAttackDTO monsterAttackDTO) {
-        int userHpAfterAttack = monsterAttackDTO.getUserCurrentHP() - monsterAttackDTO.getMonster().getMonsterPower();
+    public MonsterAttackDTO attackToUser(MonsterAttackDTO monsterAttackDTO, int sequence, GetElementalDTO getElementalDTO) {
+
+        int userHpAfterAttack = (int)((double)monsterAttackDTO.getUserCurrentHP() - monsterAttackDTO.getMonster().getMonsterPower() * huntElementalDamage.monsterPercentage(sequence, getElementalDTO));
         monsterAttackDTO.setUserCurrentHP(userHpAfterAttack);
         return monsterAttackDTO;
     }
 
-    public IntegrateMonsterAttackDTO attackPattern(IntegrateMonsterAttackDTO integrateMonsterAttackDTO){
+    public IntegrateMonsterAttackDTO attackPattern(IntegrateMonsterAttackDTO integrateMonsterAttackDTO, int sequence, GetElementalDTO getElementalDTO){
         MonsterAttackDTO monsterAttackDTO = integrateMonsterAttackDTO.getMonsterAttackDTO();
         MonsterPatternDTO monsterPatternDTO = integrateMonsterAttackDTO.getMonsterPatternDTO();
         int healStandard = (int)(monsterAttackDTO.getMonster().getMonsterHP() * 0.3);
@@ -68,13 +68,13 @@ public class MonsterAttackApplicationService {
                 monsterAttackDTO.setMonsterCurrentHP(monsterAttackDTO.getMonsterCurrentHP() + heal);
                 monsterPatternDTO.setHeal(monsterPatternDTO.getHeal()+1);
             } else {
-                monsterAttackDTO = attackToUser(monsterAttackDTO);
-                monsterAttackDTO = attackToUser(monsterAttackDTO);
+                monsterAttackDTO = attackToUser(monsterAttackDTO, sequence, getElementalDTO);
+                monsterAttackDTO = attackToUser(monsterAttackDTO, sequence, getElementalDTO);
                 monsterPatternDTO.setAttackCnt(monsterPatternDTO.getAttackCnt() + 2);
             }
         }
         else{
-            monsterAttackDTO = attackToUser(monsterAttackDTO);
+            monsterAttackDTO = attackToUser(monsterAttackDTO, sequence, getElementalDTO);
             monsterPatternDTO.setAttackCnt(monsterPatternDTO.getAttackCnt() + 1);
         }
         integrateMonsterAttackDTO.setMonsterAttackDTO(monsterAttackDTO);
