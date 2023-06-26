@@ -1,6 +1,8 @@
 package com.ohgiraffers.webrpg.hunt.application.dto;
 
 
+import com.ohgiraffers.webrpg.hunt.domain.aggregate.enumtype.MonsterET;
+import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,6 +11,6 @@ import lombok.*;
 @Getter
 @ToString
 public class GetElementalDTO {
-    private Enum userET;
-    private Enum monET;
+    private ElementalType userET;
+    private MonsterET monET;
 }
