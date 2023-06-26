@@ -22,13 +22,17 @@
             <p class="titleMessage" onclick="location.href='../../static/index.html'">소드마스터의 시대가 오고있다!</p>
         </div>
         <div class="titlebox">
-            <h1>강화 결과</h1>
+            <h1 th:text="| 강화 결과 : ${status}|"></h1>
         </div>
 
         <div class="result">
             <div class="statusWrapper">
                 <div class="status">
-                    <h2>유저</h2>
+                    <h2 th:text="| ${updateUserInfo.getName()}|"></h2>
+                    <h3 th:text="| 총 공격력 : ${updateUserInfo.getTotalSTR()}|"></h3>
+                    <h3 th:text="| 총 체력 : ${updateUserInfo.getTotalHP()}|"></h3>
+                    <h3 th:text="| 강화 레벨 : ${updateUserInfo.getUpgradeLevel()}|"></h3>
+                    <h3 th:text="| 유저의 속성 : ${updateUserInfo.getElementalType()}|"></h3>
                     <p class="hp"><img src="../img/hpbar.webp" alt=""></p>
                 </div>
                 <div class="cardimg">
@@ -39,10 +43,10 @@
 
         <div class="buttonBox">
        
-                <button class="resultBtn" onclick="location.href='../main/menu.html'">메인으로 가기</button>
+                <button class="resultBtn" onclick="location.href='/user/login'">메인으로 가기</button>
            
             
-                <button class="resultBtn" onclick="location.href='./upgrade.html'">강화 하기</button>
+                <button class="resultBtn" onclick="location.href='/upgrade/upgrade'">강화 하기</button>
            
         </div>
 

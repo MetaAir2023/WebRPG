@@ -13,7 +13,7 @@ public abstract class UserInMemoryDatabase {
     static {
         userMap.put(1,new User(1, "소드마스터",
                 1000, 100,
-                new Money(0), 1,0,1,
+                new Money(1000), 1,0,1,
                 ElementalType.FIRE));
 
     }
