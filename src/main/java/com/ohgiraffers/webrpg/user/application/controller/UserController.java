@@ -26,7 +26,7 @@ public class UserController {
 
     @GetMapping("login")
     public String login(){
-        return "main/loginPage";
+        return "user/loginPage";
     }
 
     @PostMapping("login")
@@ -36,7 +36,7 @@ public class UserController {
         session.setAttribute("userName", user.getName());
         System.out.println("userSequence : " + session.getAttribute("userSequence"));
 
-        return "main/menu";
+        return "user/menu";
     }
     @GetMapping("info")
     public String info(HttpSession session, Model mv){
