@@ -2,7 +2,21 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="upgrade.css">
+    <script>
+        jQuery(function($) {
+            $("body").css("display", "none");
+            $("body").fadeIn(2000);
+            $("a.transition").click(function(event){
+                event.preventDefault();
+                linkLocation = this.href;
+                $("body").fadeOut(1000, redirectPage);
+            });
+            function redirectPage() {
+                window.location = linkLocation;
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="/css/upgrade.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -19,17 +33,17 @@
 <body>
     <div id="Wrapper">
         <div id="title">
-            <p class="titleMessage" onclick="location.href='../../static/index.html'">소드마스터의 시대가 오고있다!</p>
+            <p class="titleMessage" onclick="location.href='/index.html'">소드마스터의 시대가 오고있다!</p>
         </div>
         <div class="titlebox">
-            <h1>강화 결과</h1>
+            <h1>Upgrade Result</h1>
         </div>
 
         <div class="result">
             <div class="statusWrapper">
                 <div class="status">
-                    <h2>유저</h2>
-                    <p class="hp"><img src="../img/hpbar.webp" alt=""></p>
+                    <h2>User</h2>
+                    <p class="hp"><img src="/img/hpbar.webp" alt=""></p>
                 </div>
                 <div class="cardimg">
                     <img src="http://www.hearthcards.net/cards/ac01cc14.png" alt="">
@@ -39,10 +53,12 @@
 
         <div class="buttonBox">
        
-                <button class="resultBtn" onclick="location.href='../main/menu.html'">메인으로 가기</button>
+                <button class="resultBtn" onclick="location.href='/user/menu'">Menu</button>
            
-            
-                <button class="resultBtn" onclick="location.href='./upgrade.html'">강화 하기</button>
+            <form action="upgradeResult" method="post">
+                <button class="resultBtn" type="submit">Upgrade</button>
+            </form>
+
            
         </div>
 

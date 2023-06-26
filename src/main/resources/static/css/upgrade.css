@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'neon';
+    src: url('/css/folkard/folkard_.ttf') format('truetype');
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "neon";
+    list-style: none;
+    color: white;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+body{
+    font-family: "neon";
+    animation: fadein 2000ms ease-out;
+    -moz-animation: fadein 2000ms ease-out; /* Firefox */
+    -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
+    -o-animation: fadein 2000ms ease-out; /* Opera */
+}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@-o-keyframes fadein { /* Opera */
+    from {opacity:0;}
+    to {opacity: 1;}
+}
+#Wrapper{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/back/대장간.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
+.titleMessage {
+    position: relative;
+    margin: 20px;
+    font-size: 12px;
+    
+}
+.main{
+    font-size: 200px;
+
+
+    width: 1000px;
+   margin: 50px auto;
+}
+.titlebox{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+
+/* upgradeResultPage */
+.result{
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.statusWrapper{
+  margin-top: 40px;
+}
+.status .hp img{
+  width: 300px;
+  height: 50px;
+}
+.cardimg img{
+  width: 300px;
+}
+
+.buttonBox{
+  width:1200px;
+  margin: 150px auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  
+}
+ .resultBtn{
+  width: 200px;
+  height: 40px;
+  margin-bottom: 20px;
+  background-color: brown;
+  border-radius: 10px;
+  color: yellow;
+}
+
+/* upgradePage */
+.upgraderesult{
+  width: 400px;
+   
+
+    /* background-color: aliceblue; */
+    margin: 150px auto;
+    text-align: center;
+    ;
+    font-size: 30px;
+    font-weight: bold;
+  
+}
+.upgradeProbability{
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.buttonBox1{
+  width:200px ;
+margin: 50px auto;
+}
+.upgradeBtn{
+  width: 200px;
+  height: 40px;
+
+  background-color: brown;
+  border-radius: 10px;
+  color: yellow;
+  
+}
+.backBtn{
+  width: 200px;
+  height: 40px;
+ margin: 40px 200px;
+  background-color: brown;
+  border-radius: 10px;
+  color: yellow;
+}
