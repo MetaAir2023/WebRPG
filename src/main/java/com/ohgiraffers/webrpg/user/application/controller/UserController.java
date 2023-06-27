@@ -63,7 +63,6 @@ public class UserController {
     }
     @PostMapping("changeType")
     public String changeType(HttpSession session,@ModelAttribute("type") String type, Model model){
-        System.out.println(type);
         int userSequence = (int) session.getAttribute("userSequence");
         userApplicationService.saveElementalType(userSequence,type);
 
