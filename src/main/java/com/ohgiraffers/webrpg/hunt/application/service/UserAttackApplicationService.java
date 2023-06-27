@@ -69,11 +69,11 @@ public class UserAttackApplicationService {
         return userPatternDTO;
     }
 
-    public IntegrateUserAttackDTO attackPattern(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
+    public IntegrateUserAttackDTO attackPatternUser(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence ,GetElementalDTO getElementalDTO) {
         UserAttackDTO userAttackDTO = integrateUserAttackDTO.getUserAttackDTO();
         UserPatternDTO userPatternDTO = integrateUserAttackDTO.getUserPatternDTO();
 
-        int healStandard = (int)(userAttackDTO.getUserStatDTO().getTotalHP() * 0.3);
+        int healStandard = (int)(userAttackDTO.getUserInfoDTO().getTotalHP() * 0.3);
         if(userPatternDTO.getAttackCnt() != 0 && (userPatternDTO.getAttackCnt() % 3) == 0) {
             if(userAttackDTO.getUserCurrentHP() <= healStandard && userPatternDTO.getHeal() <= 0) {
                 int heal = (int)(userAttackDTO.getUserInfoDTO().getTotalHP() * 0.1);
