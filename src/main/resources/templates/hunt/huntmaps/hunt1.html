@@ -69,13 +69,8 @@
                     <div class="btnBox">
                         <div>
                             <form action="/attack/attackButton?mapId=1" method="post">
-                                <input type="hidden" name="integrateUserAttackDTO" th:value="${integrateUserAttackDTO}"/>
-                                <input type="hidden" name="integrateMonsterAttackDTO" th:value="${integrateMonsterAttackDTO}"/>
-                                <input type="hidden" name="userAttackCnt" th:value="${userAttackCnt}"/>
-                                <input type="hidden" name="monsterAttackCnt" th:value="${monsterAttackCnt}"/>
-                                <button type="submit" id="attack">Attack</button>
+                                <button id="attack" type="submit">Attack</button>
                             </form>
-
                         </div>
                         <div>
                             <button onclick="location.href='/map'">Run</button>
@@ -104,13 +99,5 @@
         </div>
 
     </div>
-    <script th:inline="javascript">
-        window.onload = function () {
-            let integrateMonsterAttackDTO = [[${ integrateMonsterAttackDTO }]];
-            if(integrateMonsterAttackDTO !== null) {
-                console.log(integrateMonsterAttackDTO);
-            }
-        }
-        </script>
 </body>
 </html>

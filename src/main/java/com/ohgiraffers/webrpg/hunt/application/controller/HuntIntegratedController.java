@@ -18,7 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,17 +83,24 @@ public class HuntIntegratedController {
 
     @PostMapping("attackButton")
     public String huntProcess(@RequestParam String mapId,
-                              @ModelAttribute("integrateMonsterAttackDTO") IntegrateMonsterAttackDTO integrateMonsterAttackDTO,
-                              @ModelAttribute("integrateUserAttackDTO") IntegrateUserAttackDTO integrateUserAttackDTO,
-                              @ModelAttribute("userAttackCnt") Integer userAttackCnt,
-                              @ModelAttribute("monsterAttackCnt") Integer monsterAttackCnt,
-                              HttpSession session){
+                              HttpServletRequest request,
+                              HttpSession session,
+                              RedirectAttributes rttr){
 //    public Map huntProcess(@RequestParam String mapId, Model model, HttpSession session){
         //몬스터 시퀸스
         System.out.println("HuntIntegratedController attackButton");
-        System.out.println("integrateMonsterAttackDTO = " + integrateMonsterAttackDTO);
-        int sequence =integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterSequence();
-        System.out.println("sequence = " + sequence);
+        IntegrateMonsterAttackDTO integrateMonsterAttackDTO = (IntegrateMonsterAttackDTO) session.getAttribute("integrateMonsterAttackDTO");
+        IntegrateUserAttackDTO integrateUserAttackDTO = (IntegrateUserAttackDTO) session.getAttribute("integrateUserAttackDTO");
+        int userAttackCnt = (Integer) session.getAttribute("userAttackCnt");
+        int monsterAttackCnt = (Integer) session.getAttribute("monsterAttackCnt");
+        System.out.println("integrateMonsterAttackDTO = "+ integrateMonsterAttackDTO);
+        System.out.println("integrateUserAttackDTO = "+ integrateUserAttackDTO);
+        System.out.println("userAttackCnt = "+ userAttackCnt);
+        System.out.println("monsterAttackCnt = "+ monsterAttackCnt);
+        int monsterSequence =integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterSequence();
+        int userSequence =  integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getSequence();
+        System.out.println("monsterSequence = " + monsterSequence);
+        System.out.println("userSequence = " + userSequence);
 
         int userCnt = userAttackCnt;
         int monsterCnt = monsterAttackCnt;
@@ -102,41 +112,51 @@ public class HuntIntegratedController {
 
         //유저 공격
         if(0 < userCnt && userCnt % 3 == 0){
-            integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
+            integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, userSequence, getElementalDTO);
         }else{
             UserAttackDTO userAttackDTO = integrateUserAttackDTO.getUserAttackDTO();
-            userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
+            userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, userSequence, getElementalDTO);
             integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
         }
         //model.addAttribute("userAttackCnt", userCnt + 1);
 
         //몬스터가 죽었을 경우,
         if(integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue() <= 0){
-            return "hunt/huntResult";
+            return "redirect:result";
         }
 
         if(0 < monsterCnt && monsterCnt % 3 == 0){
-            integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, sequence, getElementalDTO);
+            integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, monsterSequence, getElementalDTO);
         }else{
             MonsterAttackDTO monsterAttack = integrateMonsterAttackDTO.getMonsterAttackDTO();
-            monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, sequence, getElementalDTO);
+            monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, userSequence, getElementalDTO);
             integrateMonsterAttackDTO.setMonsterAttackDTO(monsterAttack);
         }
         //model.addAttribute("monsterAttackCnt", monsterCnt + 1);
 
 
         if(integrateMonsterAttackDTO.getMonsterAttackDTO().getUserCurrentHP() <= 0){
-            return "hunt/huntfail";
+            return "redirect:fail";
         }
 
         //model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
-       // model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
-//
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("integratedUserAttackDTO", integrateUserAttackDTO);
-//        map.put("integratedMonsterAttackDTO", integrateMonsterAttackDTO);
-        return String.format("redirect:/hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
+        session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+        //model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+        session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+
+        System.out.println("mapId = " + mapId);
+        return "redirect:/map/"+mapId;
 //        return map;
+    }
+
+    @GetMapping("result")
+    public String result() {
+        return "hunt/huntResult";
+    }
+
+    @GetMapping("fail")
+    public String fail() {
+        return "hunt/huntfail";
     }
 
 //    public UserAttackDTO initUserAttackToMonster(Model model, HttpSession session) {
