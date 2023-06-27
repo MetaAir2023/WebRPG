@@ -26,7 +26,7 @@ public class MonsterAppearController {
     }
 
     @GetMapping ("huntMap/{mapId}")
-    public String monsterAppear(HttpSession session ,@RequestParam String mapId, Model model){
+    public String monsterAppear(HttpSession session ,@PathVariable String mapId, Model model){
         String userName= session.getAttribute("userName").toString();
         UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
 
