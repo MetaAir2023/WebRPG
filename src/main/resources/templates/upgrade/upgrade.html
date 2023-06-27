@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="upgrade.css">
+    <link rel="stylesheet" href="/css/upgrade.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -19,7 +19,7 @@
 <body>
     <div id="Wrapper">
         <div id="title">
-            <p class="titleMessage" onclick="location.href='../../../static/index.html'">소드마스터의 시대가 오고있다!</p>
+            <p class="titleMessage" onclick="location.href='/index.html'">소드마스터의 시대가 오고있다!</p>
         </div>
         <div class="titlebox">
             <h1>Enchant</h1>
@@ -27,8 +27,8 @@
 
         <div class="upgraderesult">
            <div>
-            <p th:text="|현재 강화 레벨 : ${current.getUpgradeLevel()}|"></p>
-            <p th:text="|총 공력력 : ${current.getTotalSTR()} ATK|"></p>
+            <p th:text="|Current Upgrade Level : ${current.getUpgradeLevel()}|"></p>
+            <p th:text="|Total STR : ${current.getTotalSTR()} ATK|"></p>
            </div>
         </div>
 
@@ -36,25 +36,25 @@
 
         <div class="upgradeProbability">
             <div class="upgradeSuccess">
-                <p>강화 성공 시</p>
-                <p th:text="| 강화 레벨 : ${success.getUpgradeLevel()}|"></p>
-                <p th:text="|총 공력력 : ${success.getTotalSTR()} ATK|"></p>
+                <p>SUCCESS</p>
+                <p th:text="| Upgrade Level : ${success.getUpgradeLevel()}|"></p>
+                <p th:text="|Total STR : ${success.getTotalSTR()} ATK|"></p>
             </div>
             <div class="upgradeFail">
-                <p>강화 실패 시</p>
-                <p th:text="| 강화 레벨 : ${fail.getUpgradeLevel()}|"></p>
-                <p th:text="|총 공력력 : ${fail.getTotalSTR()} ATK|"></p>
+                <p>FAIL</p>
+                <p th:text="| Upgrade Level : ${fail.getUpgradeLevel()}|"></p>
+                <p th:text="|Total STR : ${fail.getTotalSTR()} ATK|"></p>
             </div>
         </div>
 
    
             <div class="buttonBox1">
                 <form action="/upgrade/upgradeResult" method="post">
-                    <button class="upgradeBtn" type="submit">강화 하기</button>
+                    <button class="upgradeBtn" type="submit">Upgrade</button>
                 </form>
             </div>
             <div>
-                <button class="backBtn" onclick="location.href='../main/menu.html'">뒤로 가기</button>
+                <button class="backBtn" onclick="location.href='/menu'">back</button>
             </div>
 
 

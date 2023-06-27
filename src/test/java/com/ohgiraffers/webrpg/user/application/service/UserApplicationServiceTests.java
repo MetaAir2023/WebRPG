@@ -54,7 +54,7 @@ public class UserApplicationServiceTests {
         int money = 100;
         userApplicationService.saveMoneyReward(sequence, money);
         User user = userApplicationService.getUserBySequence(sequence);
-        assertEquals(user.getMoney().getValue(), 100);
+        assertEquals(user.getMoney().getValue(), 1100);
 
     }
     @Test

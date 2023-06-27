@@ -15,8 +15,7 @@
             }
         });
     </script>
-
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -27,18 +26,28 @@
 <body>
 <div id="Wrapper">
 
-    <div id="title" onclick="location.href='/login'" >
-        <p class="titleMessage">소드마스터의 시대가 오고있다!</p>
+    <div id="title">
+        <p class="titleMessage" onclick="location.href='/index.html'">소드마스터의 시대가 오고있다!</p>
         <div class="main">
             <p>
                 META RPG
             </p>
         </div>
-        <div><p id="pressMessage">Press to button...</p></div>
-        <img src="" alt="">
-    </div>
-</div>
 
+
+
+        <form action="/user/login" method="post" class="formlogin">
+            <input type="text" name="userName" placeholder="사용자의 닉네임을 입력해 주세요..." class="inputbox">
+            <input type="submit" value="접속하기" class="loginBtn">
+
+        </form>
+        <div class="logoutBtnBox">
+            <button type="button" class="logoutBtn" onclick="location.href='/'">나가기</button>
+        </div>
+
+    </div>
+
+</div>
 
 
 </body>

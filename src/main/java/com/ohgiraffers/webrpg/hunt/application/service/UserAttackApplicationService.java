@@ -1,9 +1,8 @@
 package com.ohgiraffers.webrpg.hunt.application.service;
 
-import com.ohgiraffers.webrpg.hunt.application.dto.IntegrateUserAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.UserAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.UserPatternDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.*;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
+import com.ohgiraffers.webrpg.hunt.domain.aggregate.vo.MonsterHp;
 import com.ohgiraffers.webrpg.hunt.domain.service.UserAttackDomainService;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
@@ -19,16 +18,27 @@ public class UserAttackApplicationService {
     private final UserAttackDomainService userAttackDomainService;
 
     private final InMemoryUserRepository inMemoryUserRepository;
+    private final HuntElementalDamage huntElementalDamage;
 
     @Autowired
     public UserAttackApplicationService(UserAttackDomainService userAttackDomainService
-                                      , InMemoryUserRepository inMemoryUserRepository){
+                                      , InMemoryUserRepository inMemoryUserRepository
+                                      , HuntElementalDamage huntElementalDamage){
         this.userAttackDomainService = userAttackDomainService;
         this.inMemoryUserRepository = inMemoryUserRepository;
+        this.huntElementalDamage = huntElementalDamage;
     }
 
-
-
+    public UserInfoDTO getUserInfo(User user) {
+        return new UserInfoDTO(user.getSequence(),
+                                user.getName(),
+                                user.getDefaultHP(),
+                                user.getDefaultSTR(),
+                                user.getMoney(),
+                                user.getLevel(),
+                                user.getUpgradeLevel(),
+                                user.getElementalType());
+    }
 
 
 
@@ -44,9 +54,9 @@ public class UserAttackApplicationService {
         return userAttackDTO;
     }
 
-    public UserAttackDTO attackToMonster(UserAttackDTO userAttackDTO) {
-        int monsterHpAfterAttack = (userAttackDTO.getMonsterCurrentHP().getValue()) - (userAttackDTO.getUserStatDTO().getTotalSTR());
-
+    public UserAttackDTO attackToMonster(UserAttackDTO userAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
+        int monsterHpAfterAttack = (int)((double)userAttackDTO.getMonsterCurrentHP().getValue() - userAttackDTO.getUserInfoDTO().getTotalSTR() * huntElementalDamage.totalPercentage(sequence, getElementalDTO ,userGetElementalDTO));
+        userAttackDTO.setMonsterCurrentHP(new MonsterHp(monsterHpAfterAttack));
         return userAttackDTO;
     }
 
@@ -59,7 +69,7 @@ public class UserAttackApplicationService {
         return userPatternDTO;
     }
 
-    public IntegrateUserAttackDTO attackPattern(IntegrateUserAttackDTO integrateUserAttackDTO) {
+    public IntegrateUserAttackDTO attackPattern(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
         UserAttackDTO userAttackDTO = integrateUserAttackDTO.getUserAttackDTO();
         UserPatternDTO userPatternDTO = integrateUserAttackDTO.getUserPatternDTO();
 
@@ -70,14 +80,22 @@ public class UserAttackApplicationService {
                 userAttackDTO.setUserCurrentHP(userAttackDTO.getUserCurrentHP() + heal);
                 userPatternDTO.setHeal(userPatternDTO.getHeal() + 1);
             } else {
-                userAttackDTO = attackToMonster(userAttackDTO);
-                userAttackDTO = attackToMonster(userAttackDTO);
+                userAttackDTO = attackToMonster(userAttackDTO , sequence, userGetElementalDTO, getElementalDTO);
+                userAttackDTO = attackToMonster(userAttackDTO , sequence, userGetElementalDTO, getElementalDTO);
                 userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 2);
             }
         } else {
-            userAttackDTO = attackToMonster(userAttackDTO);
+            userAttackDTO = attackToMonster(userAttackDTO, sequence , userGetElementalDTO, getElementalDTO);
             userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 1);
         }
+        integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
+        integrateUserAttackDTO.setUserPatternDTO(userPatternDTO);
+
+        return integrateUserAttackDTO;
+    }
+
+    public IntegrateUserAttackDTO initIntegrateUserAttackDTO(UserAttackDTO userAttackDTO, UserPatternDTO userPatternDTO) {
+        IntegrateUserAttackDTO integrateUserAttackDTO = new IntegrateUserAttackDTO();
         integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
         integrateUserAttackDTO.setUserPatternDTO(userPatternDTO);
 

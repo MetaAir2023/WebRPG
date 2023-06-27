@@ -15,18 +15,13 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
-@SessionAttributes("userSequence")
+@SessionAttributes(value = {"userSequence", "userName"})
 public class UserController {
 
     private final UserApplicationService userApplicationService;
     @Autowired
     public UserController (UserApplicationService userApplicationService) {
         this.userApplicationService = userApplicationService;
-    }
-
-    @GetMapping("login")
-    public String login(){
-        return "user/loginPage";
     }
 
     @PostMapping("login")
@@ -36,17 +31,17 @@ public class UserController {
         session.setAttribute("userName", user.getName());
         System.out.println("userSequence : " + session.getAttribute("userSequence"));
 
-        return "user/menu";
+        return "redirect:/menu";
     }
     @GetMapping("info")
-    public String info(HttpSession session, Model mv){
+    public String info(HttpSession session, Model model){
 //        System.out.println(session.getAttribute("userName"));
         String userName= session.getAttribute("userName").toString();
         UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
 //        mv.addAttribute("userInfoDTO",userInfoDTO);
-        mv.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        mv.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        mv.addAttribute("userTotalSTR",userInfoDTO.getTotalSTR());
+        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
+        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
+        model.addAttribute("userTotalSTR",userInfoDTO.getTotalSTR());
 //        System.out.println("userInfoDTO = " + userInfoDTO.getTotalHP());
         return  "hunt/huntSelectMap";
     }
