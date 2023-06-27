@@ -75,14 +75,14 @@ public class UserAttackApplicationServiceTests {
         UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
         Monster monster = domainRepository.findMonsterBySequence(1);
         int sequence = 1;
-        UserGetElementalDTO userGetElementalDTO = new UserGetElementalDTO();
+        GetElementalDTO getElementalDTO = new GetElementalDTO();
         ElementalType userET  = ElementalType.FIRE;
         MonsterET monsterET = MonsterET.WATER;
-        userGetElementalDTO.setUserET(userET);
-        userGetElementalDTO.setMonET(monsterET);
+        getElementalDTO.setUserET(userET);
+        getElementalDTO.setMonET(monsterET);
         System.out.println("monster.getMonsterName() = " + monster.getMonsterName());
         UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
-        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, userGetElementalDTO, new GetElementalDTO());
+        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
         assertEquals(190, userAttackDTO.getMonsterCurrentHP().getValue());
 
     }

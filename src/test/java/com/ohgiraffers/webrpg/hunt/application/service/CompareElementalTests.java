@@ -33,7 +33,7 @@ public class CompareElementalTests {
         getElementalDTO.setUserET(userET);
         getElementalDTO.setMonET(monET);
 
-        double result = huntElementalDamage.totalPercentage(1,getElementalDTO, new UserGetElementalDTO());
+        double result = huntElementalDamage.totalPercentage(1,getElementalDTO);
 
         System.out.println(result);
 
