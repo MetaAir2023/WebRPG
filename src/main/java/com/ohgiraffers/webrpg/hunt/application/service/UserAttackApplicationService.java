@@ -54,8 +54,8 @@ public class UserAttackApplicationService {
         return userAttackDTO;
     }
 
-    public UserAttackDTO attackToMonster(UserAttackDTO userAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
-        int monsterHpAfterAttack = (int)((double)userAttackDTO.getMonsterCurrentHP().getValue() - userAttackDTO.getUserInfoDTO().getTotalSTR() * huntElementalDamage.totalPercentage(sequence, getElementalDTO ,userGetElementalDTO));
+    public UserAttackDTO attackToMonster(UserAttackDTO userAttackDTO, int sequence,GetElementalDTO getElementalDTO) {
+        int monsterHpAfterAttack = (int)((double)userAttackDTO.getMonsterCurrentHP().getValue() - userAttackDTO.getUserInfoDTO().getTotalSTR() * huntElementalDamage.totalPercentage(sequence, getElementalDTO));
         userAttackDTO.setMonsterCurrentHP(new MonsterHp(monsterHpAfterAttack));
         return userAttackDTO;
     }
@@ -80,12 +80,12 @@ public class UserAttackApplicationService {
                 userAttackDTO.setUserCurrentHP(userAttackDTO.getUserCurrentHP() + heal);
                 userPatternDTO.setHeal(userPatternDTO.getHeal() + 1);
             } else {
-                userAttackDTO = attackToMonster(userAttackDTO , sequence, userGetElementalDTO, getElementalDTO);
-                userAttackDTO = attackToMonster(userAttackDTO , sequence, userGetElementalDTO, getElementalDTO);
+                userAttackDTO = attackToMonster(userAttackDTO , sequence, getElementalDTO);
+                userAttackDTO = attackToMonster(userAttackDTO , sequence, getElementalDTO);
                 userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 2);
             }
         } else {
-            userAttackDTO = attackToMonster(userAttackDTO, sequence , userGetElementalDTO, getElementalDTO);
+            userAttackDTO = attackToMonster(userAttackDTO, sequence , getElementalDTO);
             userPatternDTO.setAttackCnt(userPatternDTO.getAttackCnt() + 1);
         }
         integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);

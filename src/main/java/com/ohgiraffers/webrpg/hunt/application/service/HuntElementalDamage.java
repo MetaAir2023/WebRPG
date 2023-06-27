@@ -25,12 +25,10 @@ public class HuntElementalDamage {
 
 
     public ElementDamageDTO extraDamage(int sequence ,NoEtDmgDTO noEtDmg,
-                                        GetElementalDTO getElementalDTO,
-                                        MonsterStrDTO monsterStrDTO,
-                                        UserGetElementalDTO userGetElementalDTO){
+                                        GetElementalDTO getElementalDTO){
         ElementDamageDTO damageDTO = new ElementDamageDTO();
         double monATK = noEtDmg.getMonsterATK() * monsterPercentage(sequence, getElementalDTO);
-        double userATK = noEtDmg.getUserATK() * totalPercentage(sequence,getElementalDTO, userGetElementalDTO);
+        double userATK = noEtDmg.getUserATK() * totalPercentage(sequence,getElementalDTO);
 
         damageDTO.setMonsterATK(monATK);
         damageDTO.setUserATK(userATK);
@@ -40,7 +38,7 @@ public class HuntElementalDamage {
 
     }
 
-    public double totalPercentage(int sequence, GetElementalDTO getElementalDTO, UserGetElementalDTO userGetElementalDTO){
+    public double totalPercentage(int sequence, GetElementalDTO getElementalDTO){
         int userUpLevel = huntExtraElemental.getUserLevel(sequence);
         if(huntExtraElemental.compareET(getElementalDTO)){
             return 1 + (userUpLevel * 0.1);
