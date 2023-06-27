@@ -67,7 +67,7 @@
                     </div>
                     <div class="btnBox">
                         <div>
-                            <button id="attack">Attack</button>
+                            <button id="attack" th:onclick="|location.href='@{/attack/initHunting(monsterSequence=${monsterDTO.getSequence()}, mapId=1 )}'|">Attack</button>
                         </div>
                         <div>
                             <button onclick="location.href='/user/info'">Run</button>
@@ -96,6 +96,5 @@
         </div>
 
     </div>
-   <script src="/css/hunt.js"></script>
 </body>
 </html>

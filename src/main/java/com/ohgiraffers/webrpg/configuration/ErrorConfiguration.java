@@ -16,11 +16,11 @@ public class ErrorConfiguration {
 
         Properties props = new Properties();
 
-        props.setProperty("java.lang.NullPointerException", "error/nullPointer");
+        //props.setProperty("java.lang.NullPointerException", "error/nullPointer");
 
         exceptionResolver.setExceptionMappings(props);
-        exceptionResolver.setDefaultErrorView("error/default");
-        exceptionResolver.setExceptionAttribute("exceptionMessage");
+        //exceptionResolver.setDefaultErrorView("error/default");
+        //exceptionResolver.setExceptionAttribute("exceptionMessage");
 
         return exceptionResolver;
     }

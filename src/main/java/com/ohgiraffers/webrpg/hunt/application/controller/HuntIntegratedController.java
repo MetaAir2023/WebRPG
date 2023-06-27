@@ -2,6 +2,7 @@ package com.ohgiraffers.webrpg.hunt.application.controller;
 
 
 import com.ohgiraffers.webrpg.hunt.application.dto.*;
+import com.ohgiraffers.webrpg.hunt.application.service.MonsterAppearApplicationService;
 import com.ohgiraffers.webrpg.hunt.application.service.MonsterAttackApplicationService;
 import com.ohgiraffers.webrpg.hunt.application.service.UserAttackApplicationService;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
@@ -27,6 +28,8 @@ import java.util.Objects;
 public class HuntIntegratedController {
     private UserAttackApplicationService userAttackApplicationService;
     private MonsterAttackApplicationService monsterAttackApplicationService;
+    private MonsterAppearController monsterAppearController;
+
     private InMemoryUserRepository inMemoryUserRepository;
 
     private UserApplicationService userApplicationService;
@@ -35,24 +38,33 @@ public class HuntIntegratedController {
 
     @Autowired
     private HuntIntegratedController(UserAttackApplicationService userAttackApplicationService
-            , InMemoryUserRepository inMemoryUserRepository, MonsterAttackApplicationService monsterAttackApplicationService, InfraRepository infraRepository, UserApplicationService userApplicationService) {
+            , InMemoryUserRepository inMemoryUserRepository, MonsterAttackApplicationService monsterAttackApplicationService, InfraRepository infraRepository, UserApplicationService userApplicationService,MonsterAppearController monsterAppearController) {
         this.userAttackApplicationService = userAttackApplicationService;
         this.inMemoryUserRepository = inMemoryUserRepository;
         this.monsterAttackApplicationService = monsterAttackApplicationService;
         this.infraRepository = infraRepository;
         this.userApplicationService = userApplicationService;
+        this.monsterAppearController = monsterAppearController;
     }
 
     @GetMapping("initHunting")
-    public String initHuntProcess(@RequestParam String mapId, Model model, HttpSession session){
+    public String initHuntProcess(@RequestParam String mapId, @RequestParam String monsterSequence ,Model model, HttpSession session){
+        System.out.println("monsterSequence = " + monsterSequence);
+        model.addAttribute("monsterSequence", monsterSequence);
         UserAttackDTO userAttackDTO = initUserAttackToMonster(model, session);
+        System.out.println("userAttackDTO = " +userAttackDTO);
         UserPatternDTO userPatternDTO = initUserPatternDTO();
+        System.out.println("userPatternDTO = " +userPatternDTO);
         IntegrateUserAttackDTO integrateUserAttackDTO = userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
+        System.out.println("integrateUserAttackDTO = " +integrateUserAttackDTO);
         model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
 
         MonsterAttackDTO monsterAttackDTO = initMonsterAttackToUser(model, session);
+        System.out.println("monsterAttackDTO = " +monsterAttackDTO);
         MonsterPatternDTO monsterPatternDTO = initMonsterPatternDTO();
+        System.out.println("monsterPatternDTO = " +monsterPatternDTO);
         IntegrateMonsterAttackDTO integrateMonsterAttackDTO = monsterAttackApplicationService.initIntegrateMonsterAttackDTO(monsterAttackDTO, monsterPatternDTO);
+        System.out.println("integrateMonsterAttackDTO = " +integrateMonsterAttackDTO);
         model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
 
         model.addAttribute("userAttackCnt", 0);
