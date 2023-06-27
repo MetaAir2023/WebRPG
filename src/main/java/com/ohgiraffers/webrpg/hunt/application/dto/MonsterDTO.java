@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class MonsterDTO {
+    private int monsterSequence;
     private String monsterName;
     private int monsterHP;
     private int monsterPower;

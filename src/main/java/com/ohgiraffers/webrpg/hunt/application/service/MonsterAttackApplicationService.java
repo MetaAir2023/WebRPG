@@ -20,6 +20,7 @@ public class MonsterAttackApplicationService {
 
     public MonsterDTO getInfo(Monster monster) {
         return new MonsterDTO(
+                monster.getSequence(),
                 monster.getMonsterName(),
                 monster.getMonsterHp().getValue(),
                 monster.getMonsterPower().getValue(),

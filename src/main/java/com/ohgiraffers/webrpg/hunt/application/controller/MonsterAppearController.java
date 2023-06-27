@@ -35,7 +35,6 @@ public class MonsterAppearController {
 
         RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
 
-
         model.addAttribute("mapId",mapId);
         model.addAttribute("userInfoDTO",userInfoDTO);
         model.addAttribute("monsterDTO",randomMonsterDTO);

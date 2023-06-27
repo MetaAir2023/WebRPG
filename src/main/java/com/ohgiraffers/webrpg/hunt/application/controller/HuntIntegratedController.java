@@ -9,6 +9,7 @@ import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.enumtype.MonsterET;
 import com.ohgiraffers.webrpg.hunt.infra.repository.InfraRepository;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
+import com.ohgiraffers.webrpg.user.application.dto.loginDTO;
 import com.ohgiraffers.webrpg.user.application.service.UserApplicationService;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
@@ -38,7 +39,7 @@ public class HuntIntegratedController {
     private InfraRepository infraRepository;
 
     @Autowired
-    private HuntIntegratedController(UserAttackApplicationService userAttackApplicationService
+    public HuntIntegratedController(UserAttackApplicationService userAttackApplicationService
             , InMemoryUserRepository inMemoryUserRepository, MonsterAttackApplicationService monsterAttackApplicationService, InfraRepository infraRepository, UserApplicationService userApplicationService,MonsterAppearController monsterAppearController) {
         this.userAttackApplicationService = userAttackApplicationService;
         this.inMemoryUserRepository = inMemoryUserRepository;
@@ -78,22 +79,28 @@ public class HuntIntegratedController {
     }
 
     @PostMapping("attackButton")
-    @ResponseBody
-    public String huntProcess(@RequestParam String mapId, Model model, HttpSession session){
+    public String huntProcess(@RequestParam String mapId,
+                              @ModelAttribute("integrateMonsterAttackDTO") IntegrateMonsterAttackDTO integrateMonsterAttackDTO,
+                              @ModelAttribute("integrateUserAttackDTO") IntegrateUserAttackDTO integrateUserAttackDTO,
+                              @ModelAttribute("userAttackCnt") Integer userAttackCnt,
+                              @ModelAttribute("monsterAttackCnt") Integer monsterAttackCnt,
+                              HttpSession session){
 //    public Map huntProcess(@RequestParam String mapId, Model model, HttpSession session){
         //몬스터 시퀸스
-        int sequence = (int) model.getAttribute("sequence");
+        System.out.println("HuntIntegratedController attackButton");
+        System.out.println("integrateMonsterAttackDTO = " + integrateMonsterAttackDTO);
+        int sequence =integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterSequence();
+        System.out.println("sequence = " + sequence);
 
-        int userCnt = (int) model.getAttribute("userAttackCnt");
-        int monsterCnt = (int) model.getAttribute("monsterAttackCnt");
+        int userCnt = userAttackCnt;
+        int monsterCnt = monsterAttackCnt;
 
-        ElementalType userGetElemental = ((UserInfoDTO) model.getAttribute("userInfoDTO")).getElementalType();
-        MonsterET monsterET = ((MonsterDTO)model.getAttribute("monsterDTO")).getElementalType();
+        ElementalType userGetElemental = integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getElementalType();
+        MonsterET monsterET = integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getElementalType();
         GetElementalDTO getElementalDTO = new GetElementalDTO();
         getElementalDTO.setMonET(monsterET); getElementalDTO.setUserET(userGetElemental);
 
         //유저 공격
-        IntegrateUserAttackDTO integrateUserAttackDTO = (IntegrateUserAttackDTO) model.getAttribute("integrateUserAttackDTO");
         if(0 < userCnt && userCnt % 3 == 0){
             integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
         }else{
@@ -101,14 +108,13 @@ public class HuntIntegratedController {
             userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
             integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
         }
-        model.addAttribute("userAttackCnt", userCnt + 1);
+        //model.addAttribute("userAttackCnt", userCnt + 1);
 
         //몬스터가 죽었을 경우,
         if(integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue() <= 0){
             return "hunt/huntResult";
         }
 
-        IntegrateMonsterAttackDTO integrateMonsterAttackDTO = (IntegrateMonsterAttackDTO) model.getAttribute("integrateMonsterAttackDTO");
         if(0 < monsterCnt && monsterCnt % 3 == 0){
             integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, sequence, getElementalDTO);
         }else{
@@ -116,20 +122,20 @@ public class HuntIntegratedController {
             monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, sequence, getElementalDTO);
             integrateMonsterAttackDTO.setMonsterAttackDTO(monsterAttack);
         }
-        model.addAttribute("monsterAttackCnt", monsterCnt + 1);
+        //model.addAttribute("monsterAttackCnt", monsterCnt + 1);
 
 
         if(integrateMonsterAttackDTO.getMonsterAttackDTO().getUserCurrentHP() <= 0){
             return "hunt/huntfail";
         }
 
-        model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
-        model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+        //model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+       // model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
 //
 //        Map<String, Object> map = new HashMap<>();
 //        map.put("integratedUserAttackDTO", integrateUserAttackDTO);
 //        map.put("integratedMonsterAttackDTO", integrateMonsterAttackDTO);
-        return String.format("hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
+        return String.format("redirect:/hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
 //        return map;
     }
 
@@ -160,7 +166,7 @@ public class HuntIntegratedController {
     //Monster ATK To User
     public MonsterAttackDTO initMonsterAttackToUser(int monsterSequence, String userName){
         Monster monsterEntity = infraRepository.findMonsterBySequence(monsterSequence);
-        MonsterDTO monster = new MonsterDTO(monsterEntity.getMonsterName(), monsterEntity.getMonsterHp().getValue(), monsterEntity.getMonsterPower().getValue(), monsterEntity.getRewardExp().getValue(), monsterEntity.getRewardMoney().getValue(), monsterEntity.getMonElement());
+        MonsterDTO monster = new MonsterDTO(monsterEntity.getSequence(),monsterEntity.getMonsterName(), monsterEntity.getMonsterHp().getValue(), monsterEntity.getMonsterPower().getValue(), monsterEntity.getRewardExp().getValue(), monsterEntity.getRewardMoney().getValue(), monsterEntity.getMonElement());
 
         UserInfoDTO user = userApplicationService.getInfo(userApplicationService.getUserByName(userName));
 
