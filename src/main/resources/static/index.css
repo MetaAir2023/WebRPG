@@ -72,7 +72,7 @@ a {
 .main{
     font-size: 200px;
 
-text-align: center;
+    text-align: center;
     width: 1500px;
     margin: 50px auto;
 }
@@ -172,32 +172,34 @@ text-align: center;
 .userinfo{
     width: 400px;
     height: 500px;
-    display: inherit;
+
     margin-left:  300px;  ;
 }
 .userinfo img{
     width: 300px;
     height: 400px;
 }
-.userLevel{
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
+.userStatus{
     color: white;
-    font-weight: bold;
+    width: 200px;
     position: relative;
-    top: 20px;
-    left:80px
+    top: -131px;
+    left: 60px;
+    text-align: center;
+
+}
+.userStatus p{
+    margin-bottom: 3px;
 }
 .usertype{
-    width: 300px;
-    height: 60px;
-    position: relative;
-    top: 400px;
-    left: -180px;
+    width: 150px;
+    height: 40px;
     background-color: brown;
     color: yellow;
     border-radius: 10px;
+    position: relative;
+    top: -69px;
+    left: 82px;
 }
 .buttonBox{
     margin: 30px 0 0 300px;
@@ -242,7 +244,7 @@ text-align: center;
     background-color: brown;
     color: yellow;
     font-size:25px ;
-margin: 0 auto;
+    margin: 0 auto;
 
 
 

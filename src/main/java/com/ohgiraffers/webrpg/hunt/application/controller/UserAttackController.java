@@ -39,7 +39,7 @@ public class UserAttackController {
         }
 
         public IntegrateUserAttackDTO userAttackToMonster(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
-            userAttackApplicationService.attackPattern(integrateUserAttackDTO, sequence, userGetElementalDTO, getElementalDTO);
+            userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
 
             return integrateUserAttackDTO;
         }

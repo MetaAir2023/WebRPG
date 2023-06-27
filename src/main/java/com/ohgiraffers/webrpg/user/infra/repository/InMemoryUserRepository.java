@@ -16,8 +16,8 @@ public class InMemoryUserRepository<T> implements UserRepository<T> {
     }
 
     @Override
-    public T findUserByName(String name) {
-        return UserInMemoryDatabase.findUserByName(name);
+    public T findUserSequenceByName(String name) {
+        return  UserInMemoryDatabase.findUserByName(name);
     }
 
     @Override
