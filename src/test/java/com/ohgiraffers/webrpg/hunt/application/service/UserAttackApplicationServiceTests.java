@@ -140,6 +140,6 @@ public class UserAttackApplicationServiceTests {
 
         IntegrateUserAttackDTO integrateUserAttackDTO = userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
         integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
-        assertEquals(2600, integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue());
+        assertEquals(2780, integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue());
     }
 }
