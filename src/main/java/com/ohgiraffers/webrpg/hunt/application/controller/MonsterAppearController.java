@@ -43,9 +43,9 @@ public class MonsterAppearController {
         return String.format("hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
     }
 
-    }
-
-
-
-
 }
+
+
+
+
+
