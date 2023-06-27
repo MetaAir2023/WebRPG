@@ -3,6 +3,7 @@ package com.ohgiraffers.webrpg.database;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
 import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
+import com.ohgiraffers.webrpg.user.infra.exception.UserExistException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +25,11 @@ public abstract class UserInMemoryDatabase {
         return (T) userMap.get(sequence);
     }
 
-    public static <T> T findUserByName(String name) {
+    public static <T> T findUserByName(String name) throws UserExistException {
         return (T) userMap.values().stream()
-                .filter(user ->user.getName().equals(name))
+                .filter( T -> T.getName().equals(name))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(UserExistException::new);
     }
 
     public static void saveLevel(int sequence, int level) {

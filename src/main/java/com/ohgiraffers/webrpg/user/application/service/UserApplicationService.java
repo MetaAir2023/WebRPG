@@ -27,11 +27,7 @@ public class UserApplicationService {
     }
 
     public User getUserByName(String name) {
-        return userRepository.findUserByName(name);
-    }
-
-    public int getUserSequence(String name) {
-        return userRepository.findUserByName(name).getSequence();
+        return userRepository.findUserSequenceByName(name);
     }
 
     public User getUserBySequence(int sequence) {
