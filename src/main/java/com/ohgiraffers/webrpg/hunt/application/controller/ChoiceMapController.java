@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -59,13 +61,21 @@ public class ChoiceMapController {
         IntegrateUserAttackDTO integrateUserAttackDTO = huntIntegratedController.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
         model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
 
+        session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+
         MonsterAttackDTO monsterAttackDTO = huntIntegratedController.initMonsterAttackToUser(randomMonsterDTO.getSequence(), userName);
         MonsterPatternDTO monsterPatternDTO = huntIntegratedController.initMonsterPatternDTO();
+
         IntegrateMonsterAttackDTO integrateMonsterAttackDTO = huntIntegratedController.initIntegrateMonsterAttackDTO(monsterAttackDTO, monsterPatternDTO);
         model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+        session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+
 
         model.addAttribute("userAttackCnt", 0);
+        session.setAttribute("userAttackCnt", 0);
+
         model.addAttribute("monsterAttackCnt", 0);
+        session.setAttribute("monsterAttackCnt", 0);
 
         return String.format("hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
     }

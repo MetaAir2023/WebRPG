@@ -3,7 +3,10 @@ package com.ohgiraffers.webrpg.user.domain.aggregate.vo;
 import com.ohgiraffers.webrpg.user.domain.exception.MoneyNegativeException;
 
 public class Money {
-    private final int value;
+    private int value;
+
+    public Money() {
+    }
 
     public Money(int value) {
 
