@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import static javax.swing.text.html.CSS.getAttribute;
 
 @Controller
-@RequestMapping("monsterappear")
+@RequestMapping("hunt")
 public class MonsterAppearController {
     private final MonsterAppearApplicationService monsterAppearApplicationService;
     private final UserApplicationService userApplicationService;
@@ -25,232 +25,27 @@ public class MonsterAppearController {
         this.userApplicationService=userApplicationService;
     }
 
-    @GetMapping ("randomMonster1")
-    public String monsterAppear1(HttpSession session ,@RequestParam String mapNum, Model model){
+    @GetMapping ("huntMap/{mapId}")
+    public String monsterAppear(HttpSession session ,@PathVariable String mapId, Model model){
         String userName= session.getAttribute("userName").toString();
         UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
 
-        int mapNumber = Integer.parseInt(mapNum);
+        int mapNumber = Integer.parseInt(mapId);
 
         RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-        return "hunt/huntmaps/hunt1";
+
+
+        model.addAttribute("mapId",mapId);
+        model.addAttribute("userInfoDTO",userInfoDTO);
+        model.addAttribute("monsterDTO",randomMonsterDTO);
+
+
+        return String.format("hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
     }
-    @GetMapping ("randomMonster2")
-    public String monsterAppear2(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-        return "hunt/huntmaps/hunt2";
-    }
-    @GetMapping ("randomMonster3")
-    public String monsterAppear3(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-        return "hunt/huntmaps/hunt3";
-    }
-    @GetMapping ("randomMonster4")
-    public String monsterAppear4(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-        return "hunt/huntmaps/hunt4";
-    }
-    @GetMapping ("randomMonster5")
-    public String monsterAppear5(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-
-        return "hunt/huntmaps/hunt5";
-    }
-    @GetMapping ("randomMonster6")
-    public String monsterAppear6(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-
-        return "hunt/huntmaps/hunt6";
-    }
-    @GetMapping ("randomMonster7")
-    public String monsterAppear7(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-
-        return "hunt/huntmaps/hunt7";
-    }
-    @GetMapping ("randomMonster8")
-    public String monsterAppear8(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-
-        return "hunt/huntmaps/hunt8";
-    }
-    @GetMapping ("randomMonster9")
-    public String monsterAppear9(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-
-        return "hunt/huntmaps/hunt9";
-    }
-    @GetMapping ("randomMonster10")
-    public String monsterAppear10(HttpSession session ,@RequestParam String mapNum, Model model){
-
-        String userName= session.getAttribute("userName").toString();
-        UserInfoDTO userInfoDTO=userApplicationService.getInfo(userApplicationService.getUserByName(userName));
-
-        int mapNumber = Integer.parseInt(mapNum);
-
-        RandomMonsterDTO randomMonsterDTO = monsterAppearApplicationService.randomMonster(mapNumber);
-        model.addAttribute("monsterHp",randomMonsterDTO.getMonsterHp().getValue());
-        model.addAttribute("monsterPower",randomMonsterDTO.getMonsterPower().getValue());
-        model.addAttribute("monsterName",randomMonsterDTO.getMonsterName());
-        model.addAttribute("monsterElementalType",randomMonsterDTO.getMonsterElementalType());
-        model.addAttribute("monsterSequence",randomMonsterDTO.getSequence());
-        model.addAttribute("userName",userInfoDTO.getName());
-        model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
-        model.addAttribute("userTotalStr",userInfoDTO.getTotalSTR());
-        model.addAttribute("userLevel",userInfoDTO.getUserLevel());
-        model.addAttribute("userType",userInfoDTO.getElementalType());
-
-
-        return "hunt/huntmaps/hunt10";
-    }
-
-
-
 
 }
+
+
+
+
+

@@ -43,15 +43,15 @@
         <ul class="huntWrapper">
             <div class="statusWrapper">
                 <div class="status">
-                    <h2 th:text="${userName}"></h2>
+                    <h2 th:text="${userInfoDTO.getName()}"></h2>
                     <p class="hp"><img src="/img/hpbar.webp" alt=""></p>
                 </div>
                 <div class="cardimg">
                     <img src="/img/card/소드마스터%20카드.png" alt="">
                     <div class="userStatus">
-                        <p class="userLevel" th:text="'Level : '+${userLevel}">1</p>
-                        <p class="userLevel" th:text="'STR : '+${userTotalStr}">1</p>
-                        <p class="userLevel" th:text="'TYPE : '+${userType}">1</p>
+                        <p class="userLevel" th:text="'Level : '+${userInfoDTO.getUserLevel()}">1</p>
+                        <p class="userLevel" th:text="'STR : '+${userInfoDTO.getTotalSTR()}">1</p>
+                        <p class="userLevel" th:text="'TYPE : '+${userInfoDTO.getElementalType()}">1</p>
 
                     </div>
                 </div>
@@ -77,17 +77,16 @@
             </div>
             <div class="statusWrapper">
                 <div class="status">
-                    <h2 th:text="${monsterName}"></h2>
+                    <h2 th:text="${monsterDTO.getMonsterName()}"></h2>
                     <p class="hp"><img src="/img/hpbar.webp" alt=""/></p>
 
                 </div>
                 <div class="cardimg">
-                    <img th:src="'/img/card/'+${monsterSequence}+'.png'" alt=""/>
+                    <img th:src="'/img/card/'+ ${ monsterDTO.getSequence() } +'.png'" alt=""/>
                     <div class="userStatus">
 
-                        <p class="userLevel" th:text="'STR : '+${monsterPower}">1</p>
-                        <p class="userLevel" th:text="'TYPE : '+${monsterElementalType}">1</p>
-
+                        <p class="userLevel" th:text="'STR : '+${monsterDTO.getMonsterPower().getValue}">1</p>
+                        <p class="userLevel" th:text="'TYPE : '+${monsterDTO.getMonsterElementalType()}">1</p>
 
                     </div>
                 </div>
