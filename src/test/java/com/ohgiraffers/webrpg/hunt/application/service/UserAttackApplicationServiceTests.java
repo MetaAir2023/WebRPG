@@ -2,10 +2,7 @@ package com.ohgiraffers.webrpg.hunt.application.service;
 
 import com.ohgiraffers.webrpg.configuration.Application;
 import com.ohgiraffers.webrpg.database.MonsterDB;
-import com.ohgiraffers.webrpg.hunt.application.dto.GetElementalDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.MonsterUseDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.UserAttackDTO;
-import com.ohgiraffers.webrpg.hunt.application.dto.UserGetElementalDTO;
+import com.ohgiraffers.webrpg.hunt.application.dto.*;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.entity.Monster;
 import com.ohgiraffers.webrpg.hunt.domain.aggregate.enumtype.MonsterET;
 import com.ohgiraffers.webrpg.hunt.domain.repository.DomainRepository;
@@ -85,5 +82,64 @@ public class UserAttackApplicationServiceTests {
         userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
         assertEquals(190, userAttackDTO.getMonsterCurrentHP().getValue());
 
+    }
+
+    @Test
+    @DisplayName("유저가 몬스터를 단 한 번 공격하는 속성 공격 Test - 유저와 몬스터의 속성이 동등한 경우, 일반적인 공격")
+    public void testAttackToMonster2() {
+        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
+        Monster monster = domainRepository.findMonsterBySequence(1);
+        int sequence = 1;
+        GetElementalDTO getElementalDTO = new GetElementalDTO();
+        ElementalType userET = ElementalType.FIRE;
+        MonsterET monsterET = MonsterET.FIRE;
+        getElementalDTO.setUserET(userET);
+        getElementalDTO.setMonET(monsterET);
+        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
+        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
+        System.out.println("userAttackDTO.getUserInfoDTO().getTotalSTR() = " + userAttackDTO.getUserInfoDTO().getTotalSTR());
+        System.out.println("몬스터의 체력 : " + monster.getMonsterHp().getValue());
+        assertEquals(100, userAttackDTO.getMonsterCurrentHP().getValue());
+    }
+
+    @Test
+    @DisplayName("유저가 몬스터를 단 한 번 공격하는 속성 공격 Test - 유저와 몬스터의 속성이 유저가 유리할 경우 - 강화 된 공격")
+    public void testAttackToMonster3() {
+        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
+        Monster monster = domainRepository.findMonsterBySequence(1);
+        int sequence = 1;
+        GetElementalDTO getElementalDTO = new GetElementalDTO();
+        ElementalType userET = ElementalType.FIRE;
+        MonsterET monsterET = MonsterET.GRASS;
+        getElementalDTO.setUserET(userET);
+        getElementalDTO.setMonET(monsterET);
+        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
+        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
+        System.out.println("userAttackDTO.getUserInfoDTO().getTotalSTR() = " + userAttackDTO.getUserInfoDTO().getTotalSTR());
+        System.out.println("user의 공격력 : " + userAttackDTO.getUserInfoDTO().getTotalSTR());
+        System.out.println("몬스터의 체력 : " + monster.getMonsterHp().getValue());
+        assertEquals(89, userAttackDTO.getMonsterCurrentHP().getValue());
+    }
+
+    @Test
+    @DisplayName("유저가 몬스터를 3번 공격한 경우, 그 다음 공격의 패턴 - 2번 공격")
+    public void testUserPatternDoubleAttack() {
+        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
+        userInfoDTO.setTotalSTR(100);
+        Monster monster = domainRepository.findMonsterBySequence(2);
+        MonsterDTO monsterDTO = monsterAttackApplicationService.getInfo(monster);
+        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
+        UserPatternDTO userPatternDTO = userAttackApplicationService.initUserPatternDTO();
+        userPatternDTO.setAttackCnt(3);
+        int sequence = 1;
+        GetElementalDTO getElementalDTO = new GetElementalDTO();
+        ElementalType userET = ElementalType.WATER;
+        MonsterET monsterET = MonsterET.FIRE;
+        getElementalDTO.setMonET(monsterET);
+        getElementalDTO.setUserET(userET);
+
+        IntegrateUserAttackDTO integrateUserAttackDTO = userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
+        integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
+        assertEquals(2780, integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue());
     }
 }

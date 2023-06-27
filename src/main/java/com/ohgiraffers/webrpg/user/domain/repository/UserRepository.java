@@ -5,9 +5,9 @@ import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 
 public interface UserRepository<T> {
-    T findUserBySequence(Integer sequence);
+    T  findUserBySequence(Integer sequence);
 
-    T findUserByName(String name);
+    T findUserSequenceByName(String name);
     void saveLevelUp(Integer sequence, UserLevelUpDTO userLevelUpDTO);
 
     void saveMoney(Integer sequence, Money money);
