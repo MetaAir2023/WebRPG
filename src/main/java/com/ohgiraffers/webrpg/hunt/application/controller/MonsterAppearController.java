@@ -1,5 +1,6 @@
 package com.ohgiraffers.webrpg.hunt.application.controller;
 
+import com.ohgiraffers.webrpg.hunt.application.dto.MonsterDTO;
 import com.ohgiraffers.webrpg.hunt.application.dto.RandomMonsterDTO;
 import com.ohgiraffers.webrpg.hunt.application.service.MonsterAppearApplicationService;
 import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;

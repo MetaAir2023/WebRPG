@@ -10,12 +10,12 @@ import org.springframework.stereotype.Controller;
 @Controller("MonsterAttackController")
 public class MonsterAttackController {
     private MonsterAttackApplicationService monsterAttackApplicationService;
-    private InfraRepository infraRepository;
+//    private InfraRepository infraRepository;
 
     @Autowired
-    private MonsterAttackController(MonsterAttackApplicationService monsterAttackApplicationService, InfraRepository infraRepository){
+    private MonsterAttackController(MonsterAttackApplicationService monsterAttackApplicationService){
         this.monsterAttackApplicationService = monsterAttackApplicationService;
-        this.infraRepository = infraRepository;
+//        this.infraRepository = infraRepository;
     }
 
     public MonsterAttackDTO initMonsterAttackToUser(MonsterDTO monster, UserInfoDTO user){
