@@ -123,6 +123,14 @@ body{    font-family: "neon";
     background:url("/img/back/보물상자.jpg") no-repeat center center;
     background-size: 100% 100%;
 }
+#WrapperFail{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: beige;
+    background:url("/img/youdie.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
 
 .titleMessage {
     position: relative;
@@ -227,6 +235,14 @@ body{    font-family: "neon";
     text-align: center;
     
 }
+.buttonBox1{
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    bottom: -350px;
+}
+
 .buttonBox div .resultBtn{
     width: 200px;
     height: 40px;
@@ -235,4 +251,14 @@ body{    font-family: "neon";
     border-radius: 10px;
     color: yellow;
    
+}
+
+.buttonBox1 div .resultBtn1{
+    width: 300px;
+    height: 50px;
+    margin-bottom: 20px;
+    background-color: brown;
+    border-radius: 10px;
+    color: yellow;
+
 }

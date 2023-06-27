@@ -41,26 +41,29 @@
       <h1>Type Change</h1>
   </div>
       <div class="typeSelect">
+          <h1 th:text="'현재 속성 : '+${userType}"></h1>
+          <form action="/user/changeType" method="post">
         <ul class="typeWrapper">
           <li class="typeList">
 <!--            <img src="/img/fireicon.png" alt="" class="iconImg">-->
             <div class="typeBtn">
-            <button class="tbtn" onclick="location.href='/hunt/huntSelectMap'">Fire</button>
+            <button type="submit" class="tbtn" name="type" value="FIRE">Fire</button>
           </div>
           </li>
           <li class="typeList">
 <!--            <img src="/img/watericon.png" alt="" class="iconImg">-->
             <div class="typeBtn">
-            <button class="tbtn" onclick="location.href='/hunt/huntSelectMap'">Water</button>
+            <button type="submit" class="tbtn" name="type"  value="WATER" >Water</button>
           </div>
           </li>
           <li class="typeList">
 <!--            <img src="/img/leaficon.png" alt="" class="iconImg">-->
             <div class="typeBtn">
-            <button class="tbtn" onclick="location.href='/hunt/huntSelectMap'">Leaf</button>
+            <button type="submit" class="tbtn" name="type"  value="LEAF">Leaf</button>
           </div>
           </li>
         </ul>
+          </form>
       </div>
       <button class="backToMenu" onclick="location.href='/menu'">Back</button>
   </div>

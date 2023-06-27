@@ -59,11 +59,12 @@ body{
    margin: 50px auto;
 }
 .titlebox{
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
   text-align: center;
   
 }
+
 
 /* upgradeResultPage */
 .result{
@@ -79,12 +80,13 @@ body{
   height: 50px;
 }
 .cardimg img{
-  width: 300px;
+  width: 200px;
+    margin-top: 20px;
 }
 
 .buttonBox{
   width:1200px;
-  margin: 150px auto;
+  margin: 120px auto;
   text-align: center;
   display: flex;
   justify-content: space-between;

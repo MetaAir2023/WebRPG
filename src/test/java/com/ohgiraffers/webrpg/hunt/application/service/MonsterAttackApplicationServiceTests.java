@@ -118,7 +118,6 @@ public class MonsterAttackApplicationServiceTests {
         ElementalType userET = ElementalType.FIRE;
         getElementalDTO.setMonET(monsterET);
         getElementalDTO.setUserET(userET);
-
         IntegrateMonsterAttackDTO integrateMonsterAttackDTO = monsterAttackApplicationService.initIntegrateMonsterAttackDTO(monsterAttackDTO, monsterPatternDTO);
         integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, sequence, getElementalDTO);
         assertEquals(880, integrateMonsterAttackDTO.getMonsterAttackDTO().getUserCurrentHP());
