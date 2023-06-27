@@ -49,6 +49,14 @@
 
 </div>
 
+<script th:inline="javascript">
+    window.onload = function () {
+        let exceptionMessage = [[${ exception }]];
+        if(exceptionMessage !== null) {
+            alert(exceptionMessage);
+        }
+    }
+</script>
 
 </body>
 </html>

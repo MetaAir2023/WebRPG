@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -32,7 +30,6 @@ public class UpgradeController {
     @GetMapping("upgrade")
     public String upgradeFlags(HttpSession session, Model model) {
         int userSequence = (Integer) session.getAttribute("userSequence");
-        System.out.println("userSequence In Upgrade : " + session.getAttribute("userSequence"));
         Map<String, GetUserUpgradeStatResult> userStatsByFlags = upgradeApplicationService.getUserStatsByFlags(userSequence);
 
         model.addAttribute("success", userStatsByFlags.get("success"));
