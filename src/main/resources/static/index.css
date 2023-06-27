@@ -181,11 +181,11 @@ a {
 }
 .userStatus{
     color: white;
-    width: 100px;
-
+    width: 200px;
     position: relative;
-    top: -120px;
-    left: 79px;
+    top: -131px;
+    left: 60px;
+    text-align: center;
 
 }
 .userStatus p{

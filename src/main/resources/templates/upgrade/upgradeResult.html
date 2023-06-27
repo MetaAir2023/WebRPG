@@ -22,31 +22,32 @@
             <p class="titleMessage" onclick="location.href='/index.html'">소드마스터의 시대가 오고있다!</p>
         </div>
         <div class="titlebox">
-            <h1 th:text="| 강화 결과 : ${status}|"></h1>
+            <h4 th:text="| 강화 결과 : ${status}|"></h4>
         </div>
 
         <div class="result">
             <div class="statusWrapper">
-                <div class="status">
-                    <h2 th:text="| ${updateUserInfo.getName()}|"></h2>
-                    <h3 th:text="| 총 공격력 : ${updateUserInfo.getTotalSTR()}|"></h3>
-                    <h3 th:text="| 총 체력 : ${updateUserInfo.getTotalHP()}|"></h3>
-                    <h3 th:text="| 강화 레벨 : ${updateUserInfo.getUpgradeLevel()}|"></h3>
-                    <h3 th:text="| 유저의 속성 : ${updateUserInfo.getElementalType()}|"></h3>
-                    <p class="hp"><img src="../img/hpbar.webp" alt=""></p>
-                </div>
+
                 <div class="cardimg">
-                    <img src="http://www.hearthcards.net/cards/ac01cc14.png" alt="">
+                    <img src="/img/card/소드마스터%20카드.png" alt="">
+                    <div class="status">
+
+                        <p th:text="| STR: ${updateUserInfo.getTotalSTR()}|"></p>
+                        <p th:text="| HP : ${updateUserInfo.getTotalHP()}|"></p>
+                        <p th:text="| Upgrade Level : ${updateUserInfo.getUpgradeLevel()}|"></p>
+                        <p th:text="| Type : ${updateUserInfo.getElementalType()}|"></p>
+
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="buttonBox">
        
-                <button class="resultBtn" onclick="location.href='/user/login'">메인으로 가기</button>
+                <button class="resultBtn" onclick="location.href='/menu'">Menu</button>
            
             
-                <button class="resultBtn" onclick="location.href='/upgrade/upgrade'">강화 하기</button>
+                <button class="resultBtn" onclick="location.href='/upgrade/upgrade'">Upgrade</button>
            
         </div>
 

@@ -50,7 +50,7 @@ body{    font-family: "neon";
     height: 100%;
     position: fixed;
     background-color: beige;
-    background:url("/img/background/태양샘 고원.jpg") no-repeat center center;
+    background:url("/img/background/태양샘 고원.png") no-repeat center center;
     background-size: 100% 100%;
 }
 #Wrapper3{
@@ -58,7 +58,7 @@ body{    font-family: "neon";
     height: 100%;
     position: fixed;
     background-color: beige;
-    background:url("/img/background/얼음왕관 성채.jpg") no-repeat center center;
+    background:url("/img/background/얼음왕관 성채.webp") no-repeat center center;
     background-size: 100% 100%;
 }
 #Wrapper4{
@@ -174,7 +174,14 @@ body{    font-family: "neon";
 .cardimg img{
     width: 300px;
 }
+.userStatus{
+    position: relative;
+    color: white;
+    top: -133px;
 
+    text-align: center;
+
+}
 .action{
     width: 1000px;
 }
