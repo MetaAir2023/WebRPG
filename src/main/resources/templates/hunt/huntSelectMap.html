@@ -46,6 +46,7 @@
                     <p class="userLevel" th:text="'Level : '+${userLevel}"></p>
                     <p class="userLevel" th:text="'HP : '+${userTotalHp}"></p>
                     <p class="userLevel" th:text="'STR : '+${userTotalSTR}"></p>
+                    <p class="userLevel" th:text="'TPYE : '+${userType}"></p>
 
                 </div>
                 <button class="usertype" onclick="location.href='/user/type'">Type Change</button>
@@ -59,49 +60,49 @@
                     <p class="level">recommended level : 0~10</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt2'">
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster2?mapNum=2'">
                         Sunwell Plateau</button>
                     <p class="level">recommended level : 0~20</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt3'">Icecrown Citadel</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster3?mapNum=3'">Icecrown Citadel</button>
                     <p class="level">recommended level : 20~30</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt4'">Dragon Soul</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster4?mapNum=4'">Dragon Soul</button>
                     <p class="level">recommended level : 30~40</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt5'">Orgrimmar</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster5?mapNum=5'">Orgrimmar</button>
                     <p class="level">recommended level : 40~50</p>
                 </div>
             </div>
 
             <div class="buttonBox2">
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt6'">Hellfire Citadel</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster6?mapNum=6'">Hellfire Citadel</button>
                     <p class="level">recommended level : 50~60</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt7'">Antorus</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster7?mapNum=7'">Antorus</button>
                     <p class="level">recommended level : 60~70</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt8'">Ny'alotha</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster8?mapNum=8'">Ny'alotha</button>
                     <p class="level">recommended level : 70~80</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt9'">Sepulcher Of The First Ones</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster9?mapNum=9'">Sepulcher Of The First Ones</button>
                     <p class="level">recommended level : 80~90</p>
                 </div>
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/hunt10'">Aberrus</button>
+                    <button class="huntBtn" onclick="location.href='/monsterappear/randomMonster10?mapNum=10'">Aberrus</button>
                     <p class="level">recommended level : 90~100</p>
                 </div>
             </div>
         </div>
 
-        <button class="backToMenu" onclick="location.href='/user/menu'">Back</button>
+        <button class="backToMenu" onclick="location.href='/menu'">Back</button>
     </div>
 </div>
 </body>

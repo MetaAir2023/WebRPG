@@ -48,7 +48,7 @@ public class UserController {
       model.addAttribute("userTotalHp",userInfoDTO.getTotalHP());
       model.addAttribute("userLevel",userInfoDTO.getUserLevel());
       model.addAttribute("userTotalSTR",userInfoDTO.getTotalSTR());
-      
+      model.addAttribute("userType",userInfoDTO.getElementalType());
       return  "hunt/huntSelectMap";
     }
   
