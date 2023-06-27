@@ -25,6 +25,7 @@ import java.util.Objects;
 
 @Controller("HuntIntegratedController")
 @RequestMapping("/attack")
+@SessionAttributes(value = {"userSequence", "userName"})
 public class HuntIntegratedController {
     private UserAttackApplicationService userAttackApplicationService;
     private MonsterAttackApplicationService monsterAttackApplicationService;
@@ -51,8 +52,9 @@ public class HuntIntegratedController {
     public String initHuntProcess(@RequestParam String mapId, @RequestParam String monsterSequence ,Model model, HttpSession session){
         System.out.println("monsterSequence = " + monsterSequence);
         model.addAttribute("monsterSequence", monsterSequence);
-        int monsterSeq = (int) model.getAttribute("monsterSequence");
+        int monsterSeq =  Integer.parseInt(monsterSequence);
         String userName = (String) model.getAttribute("userName");
+        System.out.println(userName);
         UserAttackDTO userAttackDTO = initUserAttackToMonster(monsterSeq, userName);
 
         System.out.println("userAttackDTO = " +userAttackDTO);
@@ -72,7 +74,7 @@ public class HuntIntegratedController {
 
         model.addAttribute("userAttackCnt", 0);
         model.addAttribute("monsterAttackCnt", 0);
-        return String.format("hunt/huntmaps/hunt%d", Integer.valueOf(mapId));
+        return String.format("redirect:/hunt/huntMap/%d", Integer.valueOf(mapId));
     }
 
     @PostMapping("attackButton")

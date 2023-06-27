@@ -55,7 +55,8 @@
 
             <div class="buttonBox">
                 <div class="huntBtnBox">
-                    <button class="huntBtn" onclick="location.href='/hunt/huntMap/1'">Naxxramas</button>
+                    <!--<button class="huntBtn" onclick="location.href='/hunt/huntMap/1'">Naxxramas</button>-->
+                    <button class="huntBtn" th:onclick="|location.href='@{/attack/initHunting(monsterSequence=${monsterDTO.getSequence()}, mapId=1 )}'|">Naxxramas</button>
                     <p class="level">recommended level : 0~50</p>
                 </div>
                 <div class="huntBtnBox">
