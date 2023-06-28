@@ -34,6 +34,9 @@ input{
 .userinfo .usertype{
     cursor: url("/img/pointer_cur.png"), auto;
 }
+.btnBox button:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
 @keyframes fadein {
     from {opacity:0;}
     to {opacity:1;}
@@ -253,7 +256,6 @@ input{
     width: 400px;
     margin: 0 auto;
     text-align: center;
-    
 }
 .buttonBox1{
     width: 400px;
@@ -270,7 +272,6 @@ input{
     background-color: brown;
     border-radius: 10px;
     color: yellow;
-   
 }
 
 .buttonBox1 div .resultBtn1{
@@ -280,5 +281,7 @@ input{
     background-color: brown;
     border-radius: 10px;
     color: yellow;
-
+}
+.buttonBox .resultBtn:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
 }
