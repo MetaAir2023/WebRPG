@@ -4,6 +4,8 @@ import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
 import com.ohgiraffers.webrpg.user.application.dto.loginDTO;
 import com.ohgiraffers.webrpg.user.application.service.UserApplicationService;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
+import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Password;
+import com.ohgiraffers.webrpg.user.domain.exception.PasswordUnCorrectException;
 import com.ohgiraffers.webrpg.user.infra.exception.UserExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,11 @@ public class UserController {
     public String checkUser(HttpSession session, @ModelAttribute("login") loginDTO login, RedirectAttributes rttr) {
         try {
             User user = userApplicationService.getUserByName(login.getUserName());
+
+            Password password = new Password(login.getPassword());
+            if (!password.getValue().equals(user.getPassword().getValue())) {
+                throw new PasswordUnCorrectException("비밀번호가 올바르지 않습니다 !!");
+            }
             UserInfoDTO userInfo = userApplicationService.getInfo(user);
             session.setAttribute("userSequence", userInfo.getSequence());
             session.setAttribute("userName", userInfo.getName());
@@ -35,6 +42,8 @@ public class UserController {
         } catch (Exception e) {
             if(e.getClass() == UserExistException.class) {
                 rttr.addFlashAttribute("exception", "사용자가 존재하지 않습니다 !!");
+            } else if (e.getClass() == PasswordUnCorrectException.class) {
+                rttr.addFlashAttribute("exception", "비밀번호가 올바르지 않습니다 !!");
             }
             return "redirect:/login";
         }
