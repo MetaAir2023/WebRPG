@@ -30,6 +30,11 @@
             <p th:text="|Current Upgrade Level : ${current.getUpgradeLevel()}|"></p>
             <p th:text="|Total STR : ${current.getTotalSTR()} ATK|"></p>
            </div>
+
+            <div>
+                <p th:text="|Current Balance : ${upgradeCostAndBalance.getBalance()}|"></p>
+                <p th:text="|Upgrade Cost : ${upgradeCostAndBalance.getUpgradeCost()}|"></p>
+            </div>
         </div>
 
       
