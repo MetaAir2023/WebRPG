@@ -242,8 +242,6 @@ input{
 /* huntResultPage */
 .result{
     width: 400px;
-   
-
     /* background-color: aliceblue; */
     margin: 250px auto;
     text-align: center;
@@ -283,5 +281,9 @@ input{
     color: yellow;
 }
 .buttonBox .resultBtn:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+
+.resultBtn1:hover{
     cursor: url("/img/pointer_cur.png"), auto;
 }
