@@ -43,7 +43,9 @@
                     <button type="button" class="upgradebtn" onclick="location.href='/upgrade/upgrade'" style="cursor: url(/img/pointer_cur.png), auto">Upgrade</button>
                 </div>
                 <div class="menuBtn">
-                    <button type="button" class="logoutBtn" onclick="location.href='/user/logout'" style="cursor: url(/img/pointer_cur.png), auto">Logout</button>
+                    <form action="/user/logout" method="post">
+                        <button type="submit" class="logoutBtn" style="cursor: url(/img/pointer_cur.png), auto">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

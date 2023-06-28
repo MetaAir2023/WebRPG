@@ -80,5 +80,13 @@ public class UserController {
         model.addAttribute("userType",updateUserInfo.getElementalType());
         return "hunt/huntSelectMap";
     }
+
+    @PostMapping("logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("userSequence");
+        session.removeAttribute("userName");
+
+        return "redirect:/login";
+    }
 }
 
