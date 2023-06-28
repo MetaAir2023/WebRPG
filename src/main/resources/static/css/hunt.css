@@ -34,6 +34,9 @@ input{
 .userinfo .usertype{
     cursor: url("/img/pointer_cur.png"), auto;
 }
+.btnBox button:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
 @keyframes fadein {
     from {opacity:0;}
     to {opacity:1;}
