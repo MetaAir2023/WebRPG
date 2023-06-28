@@ -16,6 +16,7 @@
             }
         });
     </script>
+
     <link rel="stylesheet" href="/css/hunt.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,15 +44,16 @@
         <ul class="huntWrapper">
             <div class="statusWrapper">
                 <div class="status">
-                    <h2 th:text="${userInfoDTO.getName()}"></h2>
+                    <h2 th:text="${integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getName()}"></h2>
                     <p class="hp"><img src="/img/hpbar.webp" alt=""></p>
                 </div>
                 <div class="cardimg">
                     <img src="/img/card/소드마스터%20카드.png" alt="">
                     <div class="userStatus">
-                        <p class="userLevel" th:text="'Level : '+${userInfoDTO.getUserLevel()}">1</p>
-                        <p class="userLevel" th:text="'STR : '+${userInfoDTO.getTotalSTR()}">1</p>
-                        <p class="userLevel" th:text="'TYPE : '+${userInfoDTO.getElementalType()}">1</p>
+                        <p class="userLevel" th:text="'Level : '+${integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel()}">1</p>
+                        <p class="userLevel" th:text="'STR : '+${integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getTotalSTR()}">1</p>
+                        <p class="userLevel" th:text="'TYPE : '+${integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getElementalType()}">1</p>
+
                     </div>
                 </div>
             </div>
@@ -66,26 +68,29 @@
                 </div>
                 <div class="btnBox">
                     <div>
-                        <button id="attack">Attack</button>
+                        <form action="/attack/attackButton?mapId=1" method="post">
+                            <button id="attack" type="submit">Attack</button>
+                        </form>
                     </div>
                     <div>
-                        <button onclick="location.href='/user/info'">Run</button>
+                        <button onclick="location.href='/map'">Run</button>
                     </div>
                 </div>
 
             </div>
             <div class="statusWrapper">
                 <div class="status">
-                    <h2 th:text="${monsterDTO.getMonsterName()}"></h2>
+                    <h2 th:text="${ integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterName() }"></h2>
                     <p class="hp"><img src="/img/hpbar.webp" alt=""/></p>
 
                 </div>
                 <div class="cardimg">
-                    <img th:src="'/img/card/'+ ${ monsterDTO.getSequence() } +'.png'" alt=""/>
+                    <img th:src="'/img/card/'+ ${ integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterSequence() } +'.png'" alt=""/>
                     <div class="userStatus">
 
-                        <p class="userLevel" th:text="'STR : '+${monsterDTO.getMonsterPower().getValue}">1</p>
-                        <p class="userLevel" th:text="'TYPE : '+${monsterDTO.getMonsterElementalType()}">1</p>
+                        <p class="userLevel" th:text="'STR : '+${integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterPower()}">1</p>
+                        <p class="userLevel" th:text="'TYPE : '+${integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getElementalType().toString()}">1</p>
+
 
                     </div>
                 </div>
@@ -94,6 +99,14 @@
     </div>
 
 </div>
-<script src="/css/hunt.js"></script>
+
+<script th:inline="javascript">
+    window.onload = function () {
+        let integrateMonsterAttackDTO = [[${ integrateMonsterAttackDTO }]];
+        if(integrateMonsterAttackDTO !== null) {
+            console.log(integrateMonsterAttackDTO);
+        }
+    }
+</script>
 </body>
 </html>
