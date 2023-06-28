@@ -63,7 +63,11 @@ public class UserDomainService {
         return new UserLevelUpDTO(balanceEXP, newLevel);
     }
 
-    public Money calcBalanceMoney(Money userMoney, int gainMoney){
+    public Money calcIncreaseMoney(Money userMoney, int gainMoney){
         return new Money(userMoney.getValue() + gainMoney);
+    }
+
+    public Money calcDecreaseMoney(Money userMoney, int decreaseMoney){
+        return new Money(userMoney.getValue() - decreaseMoney);
     }
 }

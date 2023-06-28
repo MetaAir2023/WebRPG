@@ -88,9 +88,16 @@ public class UserApplicationService {
         userRepository.saveUpgradeLevel(sequence, upgradeLevel);
     }
 
-    public void saveMoneyReward(int sequence, int money) {
+    public void saveRewardMoney(int sequence, int money) {
         User user = userRepository.findUserBySequence(sequence);
-        Money balance = userDomainService.calcBalanceMoney(user.getMoney(), money);
+        Money balance = userDomainService.calcIncreaseMoney(user.getMoney(), money);
+        userRepository.saveMoney(user.getSequence(), balance);
+    }
+
+    public void saveSpendMoney(int sequence, int money) {
+        User user = userRepository.findUserBySequence(sequence);
+        int decreaseMoney = user.getMoney().getValue() - money;
+        Money balance = userDomainService.calcDecreaseMoney(user.getMoney(), decreaseMoney);
         userRepository.saveMoney(user.getSequence(), balance);
     }
 }

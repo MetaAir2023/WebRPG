@@ -7,6 +7,7 @@ import com.ohgiraffers.webrpg.upgrade.domain.service.RequestService;
 import com.ohgiraffers.webrpg.upgrade.domain.service.UpgradeDomainService;
 import com.ohgiraffers.webrpg.upgrade.domain.service.getResult.GetUserInfoResult;
 import com.ohgiraffers.webrpg.upgrade.domain.service.getResult.GetUserUpgradeStatResult;
+import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.MoneyMark;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,7 +90,7 @@ public class UpgradeApplicationService {
      */
 
     public void saveResult(int userSequence, UpgradeResultDTO upgradeResultDTO) {
-        requestService.saveUserBalance(userSequence,upgradeResultDTO.getBalance());
+        requestService.saveUserBalance(userSequence,upgradeResultDTO.getBalance(), MoneyMark.SPEND);
         requestService.saveUserUpgradeLevel(userSequence, upgradeResultDTO.getResultUpgradeLevel());
     }
 

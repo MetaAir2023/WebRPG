@@ -33,6 +33,7 @@ public class UpgradeController {
         int userSequence = (Integer) session.getAttribute("userSequence");
         Map<String, GetUserUpgradeStatResult> userStatsByFlags = upgradeApplicationService.getUserStatsByFlags(userSequence);
         UpgradeCostDTO upgradeCostAndBalance = upgradeApplicationService.getUpgradeCostAndBalance(userSequence);
+        System.out.println("upgradeFlags UpgradeCostDTO = " + upgradeCostAndBalance.toString());
         model.addAttribute("success", userStatsByFlags.get("success"));
         model.addAttribute("fail", userStatsByFlags.get("fail"));
         model.addAttribute("current", userStatsByFlags.get("current"));
@@ -48,6 +49,7 @@ public class UpgradeController {
         boolean checkUpgradeMoney = upgradeApplicationService.checkUpgradeMoney(userInfo.getMoney().getValue(), userInfo.getUserLevel());
         if(checkUpgradeMoney) {
            UpgradeResultDTO result = upgradeApplicationService.start(userInfo.getUpgradeLevel(),userInfo.getMoney().getValue(),userInfo.getUserLevel());
+            System.out.println("upgradeResult UpgradeResultDTO = " + result.toString());
             upgradeApplicationService.saveResult(userSequence, result);
             GetUserInfoResult updateUserInfo = upgradeApplicationService.getUserInfo(userSequence);
 
