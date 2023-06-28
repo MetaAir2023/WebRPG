@@ -47,7 +47,7 @@ public class MonsterDB {
         /// 대격변 최종
         this.monsterList.put(27, new Monster(27,"셰크지르", 15000, 15000, 1500, 1500,MonsterET.GRASS));
         this.monsterList.put(28, new Monster(28,"황제의 의지", 20000, 20000, 2000, 2000,MonsterET.GRASS));
-        this.monsterList.put(29, new Monster(29,"공포의 샤", 30000, 30000, 3000, 30000,MonsterET.FIRE));
+        this.monsterList.put(29, new Monster(29,"공포의 샤", 30000, 30000, 3000, 3000,MonsterET.FIRE));
         this.monsterList.put(30, new Monster(30,"레이 션", 50000, 50000, 6000, 6000,MonsterET.WATER));
         // 판다리아의 안개 중간
         this.monsterList.put(31, new Monster(31,"라덴", 40000, 40000, 4000, 4000,MonsterET.GRASS));
