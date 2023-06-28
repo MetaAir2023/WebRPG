@@ -27,8 +27,16 @@
 
         <div class="result">
            <div>
+
             <p th:text="'획득 경험치 : '+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue()}+' EXP'"></p>
             <p th:text="'획득 골드 : '+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()}+' GOLD'"></p>
+           <script th:inline="javascript">
+               var message = [[${session.huntLog}]];
+               alert(message);
+               sessionStorage.removeItem("integrateUserAttackDTO");
+               sessionStorage.removeItem("integrateMonsterAttackDTO");
+             
+           </script>
            </div>
         </div>
 

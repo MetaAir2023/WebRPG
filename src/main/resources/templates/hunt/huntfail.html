@@ -35,7 +35,12 @@
 
   <div class="result">
     <div>
-
+      <script th:inline="javascript">
+        var message = [[${session.huntLog}]];
+        alert(message);
+        sessionStorage.removeItem("integrateUserAttackDTO");
+        sessionStorage.removeItem("integrateMonsterAttackDTO");
+      </script>
     </div>
   </div>
 

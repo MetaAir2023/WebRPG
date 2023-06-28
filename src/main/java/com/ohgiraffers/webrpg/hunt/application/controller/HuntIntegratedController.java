@@ -110,7 +110,8 @@ public class HuntIntegratedController {
         MonsterET monsterET = integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getElementalType();
         GetElementalDTO getElementalDTO = new GetElementalDTO();
         getElementalDTO.setMonET(monsterET); getElementalDTO.setUserET(userGetElemental);
-
+        StringBuilder logSb = new StringBuilder();
+        logSb.append(">>> - 전 투 로 그 - <<<\n");
 
         while(true) {
             //유저 공격
@@ -121,17 +122,19 @@ public class HuntIntegratedController {
                 userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, userSequence, getElementalDTO);
                 integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
             }
+            logSb.append(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getName()).append("(이)가 ").append(integrateUserAttackDTO.getUserAttackDTO().getMonster().getMonsterName()).append("(을)를 공격하였습니다.\n");
             userCnt++;
-            //model.addAttribute("userAttackCnt", userCnt + 1);
 
             //몬스터가 죽었을 경우, 보상 적용
             if (integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue() <= 0) {
+                logSb.append(integrateUserAttackDTO.getUserAttackDTO().getMonster().getMonsterName()).append("(이)가 죽었습니다!\n");
                 integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().setMoney(new Money(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getMoney().getValue() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()));
                 integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().setUserLevel(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
                 userApplicationService.saveEXPReward(userSequence, integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getMoney().getValue() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue());
                 userApplicationService.saveMoneyReward(userSequence, integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
                 session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
                 session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+                session.setAttribute("huntLog", String.valueOf(logSb));
                 return "redirect:result";
             }
 
@@ -142,20 +145,17 @@ public class HuntIntegratedController {
                 monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, userSequence, getElementalDTO);
                 integrateMonsterAttackDTO.setMonsterAttackDTO(monsterAttack);
             }
-            //model.addAttribute("monsterAttackCnt", monsterCnt + 1);
             monsterCnt++;
+            logSb.append(integrateUserAttackDTO.getUserAttackDTO().getMonster().getMonsterName()).append("(이)가 ").append(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getName()).append("을(를) 공격하였습니다!\n");
 
             if (integrateMonsterAttackDTO.getMonsterAttackDTO().getUserCurrentHP() <= 0) {
+                logSb.append(integrateMonsterAttackDTO.getMonsterAttackDTO().getUser().getName()).append("(이)가 죽었습니다!\n");
+                session.setAttribute("huntLog", String.valueOf(logSb));
                 return "redirect:fail";
             }
 
-            //model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
             session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
-            //model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
             session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
-
-//            System.out.println("mapId = " + mapId);
-//            return "redirect:/map/" + mapId;
         }
     }
 
