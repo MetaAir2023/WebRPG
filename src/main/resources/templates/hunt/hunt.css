@@ -86,8 +86,6 @@
  
 }
 .btnBox{
- 
-
     margin:  200px 35%;
 }
 .btnBox button{
@@ -98,7 +96,9 @@
     border-radius: 10px;
     color: yellow;
 }
-
+.btnBox button:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
 /* huntResultPage */
 .result{
     width: 400px;
@@ -124,5 +124,5 @@
     background-color: brown;
     border-radius: 10px;
     color: yellow;
-   
 }
+

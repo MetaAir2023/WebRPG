@@ -20,7 +20,28 @@ body{
     -moz-animation: fadein 2000ms ease-out; /* Firefox */
     -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
     -o-animation: fadein 2000ms ease-out; /* Opera */
+    cursor: url("/img/pointer4.png"), auto;
 }
+input{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+.buttonBox .huntBtnBox .huntBtn{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+.buttonBox2 .huntBtnBox .huntBtn{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+.userinfo .usertype{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+.buttonBox1:hover .upgradeBtn:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+
+.resultBtn:hover{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
+
 @keyframes fadein {
     from {opacity:0;}
     to {opacity:1;}

@@ -1,5 +1,6 @@
 package com.ohgiraffers.webrpg.upgrade.application.controller;
 
+import com.ohgiraffers.webrpg.upgrade.application.dto.UpgradeCostDTO;
 import com.ohgiraffers.webrpg.upgrade.application.dto.UpgradeResultDTO;
 import com.ohgiraffers.webrpg.upgrade.application.service.UpgradeApplicationService;
 import com.ohgiraffers.webrpg.upgrade.domain.service.getResult.GetUserInfoResult;
@@ -31,10 +32,12 @@ public class UpgradeController {
     public String upgradeFlags(HttpSession session, Model model) {
         int userSequence = (Integer) session.getAttribute("userSequence");
         Map<String, GetUserUpgradeStatResult> userStatsByFlags = upgradeApplicationService.getUserStatsByFlags(userSequence);
-
+        UpgradeCostDTO upgradeCostAndBalance = upgradeApplicationService.getUpgradeCostAndBalance(userSequence);
         model.addAttribute("success", userStatsByFlags.get("success"));
         model.addAttribute("fail", userStatsByFlags.get("fail"));
         model.addAttribute("current", userStatsByFlags.get("current"));
+        model.addAttribute("upgradeCostAndBalance", upgradeCostAndBalance);
+
         return "upgrade/upgrade";
     }
 

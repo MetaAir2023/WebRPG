@@ -3,6 +3,7 @@ package com.ohgiraffers.webrpg.database;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
 import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
+import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Password;
 import com.ohgiraffers.webrpg.user.infra.exception.UserExistException;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public abstract class UserInMemoryDatabase {
     private static final Map<Integer, User> userMap = new HashMap<>();
     static {
         userMap.put(1,new User(1, "소드마스터",
-                1000, 100,
+                new Password("HelloWorld"),1000, 100,
                 new Money(1000), 1,0,1,
                 ElementalType.FIRE));
 

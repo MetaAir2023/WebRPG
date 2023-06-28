@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="hunt.css">
+    <link rel="stylesheet" href="/css/hunt.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div id="Wrapper">
+    <div id="WrapperResult">
         <div id="title">
             <p class="titleMessage" onclick="location.href='index.html'">소드마스터의 시대가 오고있다!</p>
         </div>
@@ -27,13 +27,15 @@
 
         <div class="result">
            <div>
-            <p th:text="'획득 경험치 :'+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue()}">획득 경험치: 300exp</p>
-            <p th:text="'획득 골드 :'+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()}">획득 골드: 3000G</p>
+
+            <p th:text="'획득 경험치 : '+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue()}+' EXP'"></p>
+            <p th:text="'획득 골드 : '+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()}+' GOLD'"></p>
            <script th:inline="javascript">
                var message = [[${session.huntLog}]];
                alert(message);
                sessionStorage.removeItem("integrateUserAttackDTO");
                sessionStorage.removeItem("integrateMonsterAttackDTO");
+             
            </script>
            </div>
         </div>

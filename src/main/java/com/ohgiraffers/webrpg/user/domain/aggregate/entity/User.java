@@ -2,12 +2,13 @@ package com.ohgiraffers.webrpg.user.domain.aggregate.entity;
 
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
 import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
+import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Password;
 
 public class User {
 
-    // TODO VO를 통한 level값에 따른 유저 HP, STR, defensivePower 값 처리 [#20]
     private final int sequence;
     private final String name;
+    private final Password password;
     private int defaultHP;
     private int defaultSTR;
     private Money money;
@@ -16,9 +17,10 @@ public class User {
     private int experiencePoint;
     private ElementalType elementalType;
 
-    public User(int sequence, String name, int defaultHP, int defaultSTR, Money money,int level, int  experiencePoint, int upgradeLevel, ElementalType elementalType) {
+    public User(int sequence, String name, Password password, int defaultHP, int defaultSTR, Money money,int level, int  experiencePoint, int upgradeLevel, ElementalType elementalType) {
         this.sequence = sequence;
         this.name = name;
+        this.password = password;
         this.defaultHP = defaultHP;
         this.defaultSTR = defaultSTR;
         this.money = money;
@@ -42,6 +44,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public Password getPassword() {
+        return password;
     }
 
     public int getUpgradeLevel() {
@@ -97,6 +103,7 @@ public class User {
         return "User {" +
                 "sequence =" + sequence + " " +
                 "name = " + name + " " +
+                "password = " + password + " "+
                 "defaultHP =" + defaultHP + " " +
                 "defaultSTR =" + defaultSTR + " " +
                 "money ="  + money.getValue()+ " " +

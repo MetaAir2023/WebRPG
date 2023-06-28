@@ -1,5 +1,6 @@
 package com.ohgiraffers.webrpg.upgrade.application.service;
 
+import com.ohgiraffers.webrpg.upgrade.application.dto.UpgradeCostDTO;
 import com.ohgiraffers.webrpg.upgrade.application.dto.UpgradeResultDTO;
 import com.ohgiraffers.webrpg.upgrade.domain.aggregate.enumtype.FlagEnum;
 import com.ohgiraffers.webrpg.upgrade.domain.service.RequestService;
@@ -22,6 +23,13 @@ public class UpgradeApplicationService {
     public UpgradeApplicationService (UpgradeDomainService upgradeDomainService,RequestService requestService ){
         this.upgradeDomainService =upgradeDomainService;
         this.requestService = requestService;
+    }
+
+    public UpgradeCostDTO getUpgradeCostAndBalance(int userSequence) {
+        GetUserInfoResult user = requestService.getUserInfo(userSequence);
+        int upgradeCost = upgradeDomainService.calcUpgradeCost(user.getUserLevel());
+        int balance = user.getMoney().getValue();
+        return new UpgradeCostDTO(balance, upgradeCost);
     }
 
     /**
