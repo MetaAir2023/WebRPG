@@ -9,6 +9,7 @@ import com.ohgiraffers.webrpg.user.application.dto.UserInfoDTO;
 import com.ohgiraffers.webrpg.user.application.dto.UserUpgradeStatDTO;
 import com.ohgiraffers.webrpg.user.application.service.UserApplicationService;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
+import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.MoneyMark;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -63,8 +64,12 @@ public class UserRequestService implements RequestService {
     }
 
     @Override
-    public void saveUserBalance(int sequence, int money) {
-        userApplicationService.saveMoneyReward(sequence, money);
+    public void saveUserBalance(int sequence, int money, MoneyMark mark) {
+        if(mark == MoneyMark.REWARD) {
+            userApplicationService.saveRewardMoney(sequence, money);
+        } else {
+            userApplicationService.saveSpendMoney(sequence, money);
+        }
     }
 
     @Override

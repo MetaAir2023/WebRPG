@@ -1,6 +1,7 @@
 package com.ohgiraffers.webrpg.upgrade.application.controller;
 
 import com.ohgiraffers.webrpg.configuration.Application;
+import com.ohgiraffers.webrpg.upgrade.application.dto.UpgradeCostDTO;
 import com.ohgiraffers.webrpg.upgrade.application.dto.UpgradeResultDTO;
 import com.ohgiraffers.webrpg.upgrade.application.service.UpgradeApplicationService;
 import com.ohgiraffers.webrpg.upgrade.domain.aggregate.enumtype.FlagEnum;
@@ -78,5 +79,14 @@ public class UpgradeApplicationServiceTests {
         int userSequence = 1;
         GetUserInfoResult result = upgradeApplicationService.getUserInfo(userSequence);
         assertEquals("소드마스터",result.getName());
+    }
+
+    @Test
+    public void testGetUpgradeCostAndBalance() {
+        int userSequence = 1;
+        UpgradeCostDTO result = upgradeApplicationService.getUpgradeCostAndBalance(userSequence);
+        assertEquals(10, result.getUpgradeCost());
+        assertEquals(1000, result.getBalance());
+
     }
 }

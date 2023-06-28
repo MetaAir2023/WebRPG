@@ -52,7 +52,7 @@ public class UserApplicationServiceTests {
     public void testSaveMoneyReward() {
         int sequence = 1;
         int money = 100;
-        userApplicationService.saveMoneyReward(sequence, money);
+        userApplicationService.saveRewardMoney(sequence, money);
         User user = userApplicationService.getUserBySequence(sequence);
         assertEquals(user.getMoney().getValue(), 1100);
 
