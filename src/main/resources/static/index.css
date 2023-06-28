@@ -17,19 +17,19 @@ body{
     -moz-animation: fadein 2000ms ease-out; /* Firefox */
     -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
     -o-animation: fadein 2000ms ease-out; /* Opera */
-    cursor: url("./img/pointer4.png"), auto;
+    cursor: url("/img/pointer4.png"), auto;
 }
 input{
-    cursor: url("./img/pointer_cur.png"), auto;
+    cursor: url("/img/pointer_cur.png"), auto;
 }
 .buttonBox .huntBtnBox .huntBtn{
-    cursor: url("./img/pointer_cur.png"), auto;
+    cursor: url("/img/pointer_cur.png"), auto;
 }
 .buttonBox2 .huntBtnBox .huntBtn{
-    cursor: url("./img/pointer_cur.png"), auto;
+    cursor: url("/img/pointer_cur.png"), auto;
 }
 .userinfo .usertype{
-    cursor: url("./img/pointer_cur.png"), auto;
+    cursor: url("/img/pointer_cur.png"), auto;
 }
 @keyframes fadein {
     from {opacity:0;}
@@ -231,7 +231,7 @@ a {
 
 }
 .huntBtnBox .level{
-    margin-left: 50px;
+    margin-left: 25px;
     margin-top: 10px;
     color: white;
 }
