@@ -13,6 +13,7 @@ import com.ohgiraffers.webrpg.user.application.dto.loginDTO;
 import com.ohgiraffers.webrpg.user.application.service.UserApplicationService;
 import com.ohgiraffers.webrpg.user.domain.aggregate.entity.User;
 import com.ohgiraffers.webrpg.user.domain.aggregate.enumtype.ElementalType;
+import com.ohgiraffers.webrpg.user.domain.aggregate.vo.Money;
 import com.ohgiraffers.webrpg.user.infra.repository.InMemoryUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -110,43 +111,52 @@ public class HuntIntegratedController {
         GetElementalDTO getElementalDTO = new GetElementalDTO();
         getElementalDTO.setMonET(monsterET); getElementalDTO.setUserET(userGetElemental);
 
-        //유저 공격
-        if(0 < userCnt && userCnt % 3 == 0){
-            integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, userSequence, getElementalDTO);
-        }else{
-            UserAttackDTO userAttackDTO = integrateUserAttackDTO.getUserAttackDTO();
-            userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, userSequence, getElementalDTO);
-            integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
+
+        while(true) {
+            //유저 공격
+            if (0 < userCnt && userCnt % 3 == 0) {
+                integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, userSequence, getElementalDTO);
+            } else {
+                UserAttackDTO userAttackDTO = integrateUserAttackDTO.getUserAttackDTO();
+                userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, userSequence, getElementalDTO);
+                integrateUserAttackDTO.setUserAttackDTO(userAttackDTO);
+            }
+            userCnt++;
+            //model.addAttribute("userAttackCnt", userCnt + 1);
+
+            //몬스터가 죽었을 경우, 보상 적용
+            if (integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue() <= 0) {
+                integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().setMoney(new Money(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getMoney().getValue() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()));
+                integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().setUserLevel(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
+                userApplicationService.saveEXPReward(userSequence, integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getMoney().getValue() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue());
+                userApplicationService.saveMoneyReward(userSequence, integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
+                session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+                session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+                return "redirect:result";
+            }
+
+            if (0 < monsterCnt && monsterCnt % 3 == 0) {
+                integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, monsterSequence, getElementalDTO);
+            } else {
+                MonsterAttackDTO monsterAttack = integrateMonsterAttackDTO.getMonsterAttackDTO();
+                monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, userSequence, getElementalDTO);
+                integrateMonsterAttackDTO.setMonsterAttackDTO(monsterAttack);
+            }
+            //model.addAttribute("monsterAttackCnt", monsterCnt + 1);
+            monsterCnt++;
+
+            if (integrateMonsterAttackDTO.getMonsterAttackDTO().getUserCurrentHP() <= 0) {
+                return "redirect:fail";
+            }
+
+            //model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+            session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
+            //model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+            session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
+
+//            System.out.println("mapId = " + mapId);
+//            return "redirect:/map/" + mapId;
         }
-        //model.addAttribute("userAttackCnt", userCnt + 1);
-
-        //몬스터가 죽었을 경우,
-        if(integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue() <= 0){
-            return "redirect:result";
-        }
-
-        if(0 < monsterCnt && monsterCnt % 3 == 0){
-            integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, monsterSequence, getElementalDTO);
-        }else{
-            MonsterAttackDTO monsterAttack = integrateMonsterAttackDTO.getMonsterAttackDTO();
-            monsterAttack = monsterAttackApplicationService.attackToUser(monsterAttack, userSequence, getElementalDTO);
-            integrateMonsterAttackDTO.setMonsterAttackDTO(monsterAttack);
-        }
-        //model.addAttribute("monsterAttackCnt", monsterCnt + 1);
-
-
-        if(integrateMonsterAttackDTO.getMonsterAttackDTO().getUserCurrentHP() <= 0){
-            return "redirect:fail";
-        }
-
-        //model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
-        session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
-        //model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
-        session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
-
-        System.out.println("mapId = " + mapId);
-        return "redirect:/map/"+mapId;
-//        return map;
     }
 
     @GetMapping("result")

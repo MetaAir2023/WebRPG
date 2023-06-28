@@ -99,5 +99,14 @@
         </div>
 
     </div>
+
+    <script th:inline="javascript">
+        window.onload = function () {
+            let integrateMonsterAttackDTO = [[${ integrateMonsterAttackDTO }]];
+            if(integrateMonsterAttackDTO !== null) {
+                console.log(integrateMonsterAttackDTO);
+            }
+        }
+    </script>
 </body>
 </html>

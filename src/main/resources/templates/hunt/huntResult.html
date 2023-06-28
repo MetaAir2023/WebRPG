@@ -27,8 +27,8 @@
 
         <div class="result">
            <div>
-            <p>획득 경험치: 300exp</p>
-            <p>획득 골드: 3000G</p>
+            <p th:text="'획득 경험치 :'+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue()}">획득 경험치: 300exp</p>
+            <p th:text="'획득 골드 :'+${session.integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()}">획득 골드: 3000G</p>
            </div>
         </div>
 
@@ -42,6 +42,15 @@
         </div>
 
     </div>
+    <script th:inline="javascript">
+        window.onload = function () {
+            let integrateMonsterAttackDTO = [[${ integrateMonsterAttackDTO }]];
+            if(integrateMonsterAttackDTO !== null) {
+                console.log(integrateMonsterAttackDTO);
+            }
+        }
+    </script>
+
 </body>
 
 </html>
