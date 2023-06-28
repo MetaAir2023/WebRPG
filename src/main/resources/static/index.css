@@ -22,6 +22,9 @@ body{
 input{
     cursor: url("/img/pointer_cur.png"), auto;
 }
+button{
+    cursor: url("/img/pointer_cur.png"), auto;
+}
 .buttonBox .huntBtnBox .huntBtn{
     cursor: url("/img/pointer_cur.png"), auto;
 }
@@ -248,7 +251,9 @@ a {
     height: 80px;
 
 }
-
+#menuBtnBox{
+    display: flex;
+}
 .huntmapBtn{
 
     width: 400px;
