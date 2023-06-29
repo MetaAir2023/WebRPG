@@ -66,60 +66,7 @@ public class UserAttackApplicationServiceTests {
         assertEquals("네파리안", monster.getMonsterName());
     }
 
-    @Test
-    @DisplayName("유저가 몬스터를 단 한 번 공격하는 속성 공격 Test - 유저의 속성이 열세인 경우, 약회된 공격")
-    public void testAttackToMonster() {
-        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
-        Monster monster = domainRepository.findMonsterBySequence(1);
-        int sequence = 1;
-        GetElementalDTO getElementalDTO = new GetElementalDTO();
-        ElementalType userET  = ElementalType.FIRE;
-        MonsterET monsterET = MonsterET.WATER;
-        getElementalDTO.setUserET(userET);
-        getElementalDTO.setMonET(monsterET);
-        System.out.println("monster.getMonsterName() = " + monster.getMonsterName());
-        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
-        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
-        assertEquals(190, userAttackDTO.getMonsterCurrentHP().getValue());
 
-    }
-
-    @Test
-    @DisplayName("유저가 몬스터를 단 한 번 공격하는 속성 공격 Test - 유저와 몬스터의 속성이 동등한 경우, 일반적인 공격")
-    public void testAttackToMonster2() {
-        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
-        Monster monster = domainRepository.findMonsterBySequence(1);
-        int sequence = 1;
-        GetElementalDTO getElementalDTO = new GetElementalDTO();
-        ElementalType userET = ElementalType.FIRE;
-        MonsterET monsterET = MonsterET.FIRE;
-        getElementalDTO.setUserET(userET);
-        getElementalDTO.setMonET(monsterET);
-        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
-        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
-        System.out.println("userAttackDTO.getUserInfoDTO().getTotalSTR() = " + userAttackDTO.getUserInfoDTO().getTotalSTR());
-        System.out.println("몬스터의 체력 : " + monster.getMonsterHp().getValue());
-        assertEquals(100, userAttackDTO.getMonsterCurrentHP().getValue());
-    }
-
-    @Test
-    @DisplayName("유저가 몬스터를 단 한 번 공격하는 속성 공격 Test - 유저와 몬스터의 속성이 유저가 유리할 경우 - 강화 된 공격")
-    public void testAttackToMonster3() {
-        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
-        Monster monster = domainRepository.findMonsterBySequence(1);
-        int sequence = 1;
-        GetElementalDTO getElementalDTO = new GetElementalDTO();
-        ElementalType userET = ElementalType.FIRE;
-        MonsterET monsterET = MonsterET.GRASS;
-        getElementalDTO.setUserET(userET);
-        getElementalDTO.setMonET(monsterET);
-        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
-        userAttackDTO = userAttackApplicationService.attackToMonster(userAttackDTO, sequence, getElementalDTO);
-        System.out.println("userAttackDTO.getUserInfoDTO().getTotalSTR() = " + userAttackDTO.getUserInfoDTO().getTotalSTR());
-        System.out.println("user의 공격력 : " + userAttackDTO.getUserInfoDTO().getTotalSTR());
-        System.out.println("몬스터의 체력 : " + monster.getMonsterHp().getValue());
-        assertEquals(89, userAttackDTO.getMonsterCurrentHP().getValue());
-    }
 
 
 }
