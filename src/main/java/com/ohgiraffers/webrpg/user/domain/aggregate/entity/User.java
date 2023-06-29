@@ -62,13 +62,7 @@ public class User {
         return money;
     }
 
-    public void setDefaultHP(int defaultHP) {
-        this.defaultHP = defaultHP;
-    }
 
-    public void setDefaultSTR(int defaultSTR) {
-        this.defaultSTR = defaultSTR;
-    }
 
     public void setElementalType(ElementalType elementalType) {
         this.elementalType = elementalType;

@@ -93,6 +93,14 @@ input{
 
   margin: 0 auto;
 }
+.nowType{
+  color: beige;
+  width: 400px;
+  margin: 0px auto;
+  text-align: center;
+  position: relative;
+  top: 300px;
+}
 .typeWrapper{
   margin-top: 400px;
   display: flex;

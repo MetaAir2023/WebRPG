@@ -137,6 +137,7 @@ a {
     font-size: 20px;
 
 }
+
 .inputbox::placeholder{
     font-size: 20px;
     color: yellow;
