@@ -15,17 +15,14 @@ import java.util.concurrent.RecursiveTask;
 @Service
 public class UserAttackApplicationService {
 
-    private final UserAttackDomainService userAttackDomainService;
 
-    private final InMemoryUserRepository inMemoryUserRepository;
+
+
     private final HuntElementalDamage huntElementalDamage;
 
     @Autowired
-    public UserAttackApplicationService(UserAttackDomainService userAttackDomainService
-                                      , InMemoryUserRepository inMemoryUserRepository
-                                      , HuntElementalDamage huntElementalDamage){
-        this.userAttackDomainService = userAttackDomainService;
-        this.inMemoryUserRepository = inMemoryUserRepository;
+    public UserAttackApplicationService(HuntElementalDamage huntElementalDamage){
+
         this.huntElementalDamage = huntElementalDamage;
     }
 

@@ -10,10 +10,5 @@ public class UserAttackDomainService {
         return hp - power;
     }
 
-    public int hpCalc(int hp, int maxHp) {
 
-        int hpPercent = (int)((hp / (double) maxHp) * 100);
-
-        return hpPercent;
-    }
 }

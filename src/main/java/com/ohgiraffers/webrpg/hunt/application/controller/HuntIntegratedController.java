@@ -34,9 +34,8 @@ import java.util.Objects;
 public class HuntIntegratedController {
     private UserAttackApplicationService userAttackApplicationService;
     private MonsterAttackApplicationService monsterAttackApplicationService;
-    private MonsterAppearController monsterAppearController;
 
-    private InMemoryUserRepository inMemoryUserRepository;
+
 
     private UserApplicationService userApplicationService;
 
@@ -44,37 +43,30 @@ public class HuntIntegratedController {
 
     @Autowired
     public HuntIntegratedController(UserAttackApplicationService userAttackApplicationService
-            , InMemoryUserRepository inMemoryUserRepository, MonsterAttackApplicationService monsterAttackApplicationService, InfraRepository infraRepository, UserApplicationService userApplicationService,MonsterAppearController monsterAppearController) {
+            , MonsterAttackApplicationService monsterAttackApplicationService, InfraRepository infraRepository, UserApplicationService userApplicationService) {
         this.userAttackApplicationService = userAttackApplicationService;
-        this.inMemoryUserRepository = inMemoryUserRepository;
         this.monsterAttackApplicationService = monsterAttackApplicationService;
         this.infraRepository = infraRepository;
         this.userApplicationService = userApplicationService;
-        this.monsterAppearController = monsterAppearController;
+
     }
 
     @GetMapping("initHunting")
     public String initHuntProcess(@RequestParam String mapId, @RequestParam String monsterSequence ,Model model, HttpSession session){
-        System.out.println("monsterSequence = " + monsterSequence);
         model.addAttribute("monsterSequence", monsterSequence);
         int monsterSeq =  Integer.parseInt(monsterSequence);
         String userName = (String) model.getAttribute("userName");
-        System.out.println(userName);
+
         UserAttackDTO userAttackDTO = initUserAttackToMonster(monsterSeq, userName);
 
-        System.out.println("userAttackDTO = " +userAttackDTO);
+
         UserPatternDTO userPatternDTO = initUserPatternDTO();
-        System.out.println("userPatternDTO = " +userPatternDTO);
         IntegrateUserAttackDTO integrateUserAttackDTO = userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
-        System.out.println("integrateUserAttackDTO = " +integrateUserAttackDTO);
         model.addAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
 
         MonsterAttackDTO monsterAttackDTO = initMonsterAttackToUser(monsterSeq, userName);
-        System.out.println("monsterAttackDTO = " +monsterAttackDTO);
         MonsterPatternDTO monsterPatternDTO = initMonsterPatternDTO();
-        System.out.println("monsterPatternDTO = " +monsterPatternDTO);
         IntegrateMonsterAttackDTO integrateMonsterAttackDTO = monsterAttackApplicationService.initIntegrateMonsterAttackDTO(monsterAttackDTO, monsterPatternDTO);
-        System.out.println("integrateMonsterAttackDTO = " +integrateMonsterAttackDTO);
         model.addAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
 
         model.addAttribute("userAttackCnt", 0);
@@ -87,21 +79,15 @@ public class HuntIntegratedController {
                               HttpServletRequest request,
                               HttpSession session,
                               RedirectAttributes rttr){
-//    public Map huntProcess(@RequestParam String mapId, Model model, HttpSession session){
-        //몬스터 시퀸스
-        System.out.println("HuntIntegratedController attackButton");
+
         IntegrateMonsterAttackDTO integrateMonsterAttackDTO = (IntegrateMonsterAttackDTO) session.getAttribute("integrateMonsterAttackDTO");
         IntegrateUserAttackDTO integrateUserAttackDTO = (IntegrateUserAttackDTO) session.getAttribute("integrateUserAttackDTO");
         int userAttackCnt = (Integer) session.getAttribute("userAttackCnt");
         int monsterAttackCnt = (Integer) session.getAttribute("monsterAttackCnt");
-        System.out.println("integrateMonsterAttackDTO = "+ integrateMonsterAttackDTO);
-        System.out.println("integrateUserAttackDTO = "+ integrateUserAttackDTO);
-        System.out.println("userAttackCnt = "+ userAttackCnt);
-        System.out.println("monsterAttackCnt = "+ monsterAttackCnt);
+
         int monsterSequence =integrateMonsterAttackDTO.getMonsterAttackDTO().getMonster().getMonsterSequence();
         int userSequence =  integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getSequence();
-        System.out.println("monsterSequence = " + monsterSequence);
-        System.out.println("userSequence = " + userSequence);
+
 
         int userCnt = userAttackCnt;
         int monsterCnt = monsterAttackCnt;
@@ -169,11 +155,10 @@ public class HuntIntegratedController {
         return "hunt/huntfail";
     }
 
-//    public UserAttackDTO initUserAttackToMonster(Model model, HttpSession session) {
+
     public UserAttackDTO initUserAttackToMonster(int monsterSequence, String userName) {
         Monster monster = infraRepository.findMonsterBySequence(monsterSequence);
-//        Monster monster = infraRepository.findMonsterBySequence((Integer) model.getAttribute("monsterSequence"));
-//        String userName = session.getAttribute("userName").toString();
+
         UserInfoDTO user = userApplicationService.getInfo(userApplicationService.getUserByName(userName));
         return userAttackApplicationService.initUserAttackDTO(monster, user);
     }
@@ -187,11 +172,6 @@ public class HuntIntegratedController {
         return userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
     }
 
-    public IntegrateUserAttackDTO userAttackToMonster(IntegrateUserAttackDTO integrateUserAttackDTO, int sequence, UserGetElementalDTO userGetElementalDTO, GetElementalDTO getElementalDTO) {
-        userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
-
-        return integrateUserAttackDTO;
-    }
 
     //Monster ATK To User
     public MonsterAttackDTO initMonsterAttackToUser(int monsterSequence, String userName){
@@ -209,8 +189,5 @@ public class HuntIntegratedController {
     public IntegrateMonsterAttackDTO initIntegrateMonsterAttackDTO(MonsterAttackDTO monsterAttackDTO, MonsterPatternDTO monsterPatternDTO){
         return monsterAttackApplicationService.initIntegrateMonsterAttackDTO(monsterAttackDTO, monsterPatternDTO);
     }
-    public IntegrateMonsterAttackDTO monsterAttackToUser(IntegrateMonsterAttackDTO integrateMonsterAttackDTO, int sequence, GetElementalDTO getElementalDTO){
-        monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, sequence, getElementalDTO);
-        return integrateMonsterAttackDTO;
-    }
+
 }

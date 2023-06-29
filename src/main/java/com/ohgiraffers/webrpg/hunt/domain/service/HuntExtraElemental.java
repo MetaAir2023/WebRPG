@@ -53,12 +53,7 @@ public class HuntExtraElemental {
         return false;
     }
 
-    public NoEtDmgDTO TotalDmg(int sequence, MonsterStrDTO monsterStrDTO){
-        NoEtDmgDTO totalDmgDTO = calcExtraService.getDMGStat(sequence,monsterStrDTO);
 
-        return totalDmgDTO;
-
-    }
     public int getUserLevel(int sequence){
         int userUpLevel = calcExtraService.getUserUpgrade(sequence);
         return userUpLevel;

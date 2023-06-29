@@ -9,7 +9,7 @@ import java.util.Random;
 public class UpgradeDomainService {
     @Value("${rate:1}")
     private double sensitivityRate;
-    @Value("${MaxUpgradeLevel:10}")
+    @Value("${MaxUpgradeLevel:1000}")
     private int MaxUpgradeLevel;
     @Value("${upgradeConstantNumber:10}")
     private int upgradeConstantNumber;
@@ -49,6 +49,6 @@ public class UpgradeDomainService {
             return upgradeLevel;
         }
         boolean successUpgrade = checkExistProbabilityDensity(upgradeLevel);
-        return successUpgrade ? upgradeLevel + 1 : upgradeLevel - 1;
+        return successUpgrade ? upgradeLevel + 2 : upgradeLevel + 1 ;
     }
 }
