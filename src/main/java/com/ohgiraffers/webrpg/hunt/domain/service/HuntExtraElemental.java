@@ -24,7 +24,6 @@ public class HuntExtraElemental {
     public boolean ElementCompatibility(int sequence ,GetElementalDTO getElementalDTO){
             MonsterET monET =getElementalDTO.getMonET();
             ElementalType userET = getElementalDTO.getUserET();
-            int userUpLevel = getUserLevel(sequence);
         if (userET == ElementalType.FIRE && monET== MonsterET.FIRE){
 
             return true;

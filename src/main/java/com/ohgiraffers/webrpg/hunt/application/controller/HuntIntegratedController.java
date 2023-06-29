@@ -116,14 +116,13 @@ public class HuntIntegratedController {
                 logSb.append(integrateUserAttackDTO.getUserAttackDTO().getMonster().getMonsterName()).append("(이)가 죽었습니다!\n");
                 integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().setMoney(new Money(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getMoney().getValue() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue()));
                 integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().setUserLevel(integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
-                userApplicationService.saveEXPReward(userSequence, integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getMoney().getValue() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue());
-                userApplicationService.saveRewardMoney(userSequence, integrateUserAttackDTO.getUserAttackDTO().getUserInfoDTO().getUserLevel() + integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
+                userApplicationService.saveRewardMoney(userSequence, integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardMoney().getValue());
+                userApplicationService.saveEXPReward(userSequence, integrateUserAttackDTO.getUserAttackDTO().getMonster().getRewardExp().getValue());
                 session.setAttribute("integrateMonsterAttackDTO", integrateMonsterAttackDTO);
                 session.setAttribute("integrateUserAttackDTO", integrateUserAttackDTO);
                 session.setAttribute("huntLog", String.valueOf(logSb));
                 return "redirect:result";
             }
-
             if (0 < monsterCnt && monsterCnt % 3 == 0) {
                 integrateMonsterAttackDTO = monsterAttackApplicationService.attackPattern(integrateMonsterAttackDTO, monsterSequence, getElementalDTO);
             } else {
