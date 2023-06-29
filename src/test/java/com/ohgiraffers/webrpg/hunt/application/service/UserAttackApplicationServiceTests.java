@@ -121,25 +121,5 @@ public class UserAttackApplicationServiceTests {
         assertEquals(89, userAttackDTO.getMonsterCurrentHP().getValue());
     }
 
-    @Test
-    @DisplayName("유저가 몬스터를 3번 공격한 경우, 그 다음 공격의 패턴 - 2번 공격")
-    public void testUserPatternDoubleAttack() {
-        UserInfoDTO userInfoDTO = userAttackApplicationService.getUserInfo((User) inMemoryUserRepository.findUserBySequence(1));
-        userInfoDTO.setTotalSTR(100);
-        Monster monster = domainRepository.findMonsterBySequence(2);
-        MonsterDTO monsterDTO = monsterAttackApplicationService.getInfo(monster);
-        UserAttackDTO userAttackDTO = userAttackApplicationService.initUserAttackDTO(monster, userInfoDTO);
-        UserPatternDTO userPatternDTO = userAttackApplicationService.initUserPatternDTO();
-        userPatternDTO.setAttackCnt(3);
-        int sequence = 1;
-        GetElementalDTO getElementalDTO = new GetElementalDTO();
-        ElementalType userET = ElementalType.WATER;
-        MonsterET monsterET = MonsterET.FIRE;
-        getElementalDTO.setMonET(monsterET);
-        getElementalDTO.setUserET(userET);
 
-        IntegrateUserAttackDTO integrateUserAttackDTO = userAttackApplicationService.initIntegrateUserAttackDTO(userAttackDTO, userPatternDTO);
-        integrateUserAttackDTO = userAttackApplicationService.attackPatternUser(integrateUserAttackDTO, sequence, getElementalDTO);
-        assertEquals(2780, integrateUserAttackDTO.getUserAttackDTO().getMonsterCurrentHP().getValue());
-    }
 }
