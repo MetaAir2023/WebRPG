@@ -13,30 +13,15 @@ import org.springframework.stereotype.Service;
 public class HuntElementalDamage {
 
     private final HuntExtraElemental huntExtraElemental;
-    private final UserRepository userRepository;
-    private final DomainRepository domainRepository;
+
     @Autowired
-    public HuntElementalDamage(HuntExtraElemental huntExtraElemental, UserRepository userRepository, DomainRepository domainRepository){
+    public HuntElementalDamage(HuntExtraElemental huntExtraElemental){
         this.huntExtraElemental = huntExtraElemental;
-        this.userRepository = userRepository;
-        this.domainRepository = domainRepository;
-    }
-
-
-
-    public ElementDamageDTO extraDamage(int sequence ,NoEtDmgDTO noEtDmg,
-                                        GetElementalDTO getElementalDTO){
-        ElementDamageDTO damageDTO = new ElementDamageDTO();
-        double monATK = noEtDmg.getMonsterATK() * monsterPercentage(sequence, getElementalDTO);
-        double userATK = noEtDmg.getUserATK() * totalPercentage(sequence,getElementalDTO);
-
-        damageDTO.setMonsterATK(monATK);
-        damageDTO.setUserATK(userATK);
-
-
-        return damageDTO;
 
     }
+
+
+
 
     public double totalPercentage(int sequence, GetElementalDTO getElementalDTO){
         int userUpLevel = huntExtraElemental.getUserLevel(sequence);

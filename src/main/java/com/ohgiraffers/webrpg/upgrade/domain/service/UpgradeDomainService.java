@@ -49,6 +49,6 @@ public class UpgradeDomainService {
             return upgradeLevel;
         }
         boolean successUpgrade = checkExistProbabilityDensity(upgradeLevel);
-        return successUpgrade ? upgradeLevel + 1 : upgradeLevel - 1;
+        return successUpgrade ? upgradeLevel + 1 : upgradeLevel -1 ;
     }
 }

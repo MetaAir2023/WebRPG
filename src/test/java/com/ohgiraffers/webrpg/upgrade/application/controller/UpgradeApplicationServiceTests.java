@@ -39,7 +39,7 @@ public class UpgradeApplicationServiceTests {
     public void testGetUserStatsByFlagIsSuccess() {
         int userSequence = 1;
         GetUserUpgradeStatResult result = requestService.getUserUpgradeStats(userSequence,FlagEnum.SUCCESS);
-        assertEquals(result.getUpgradeLevel(),2);
+        assertEquals(result.getUpgradeLevel(),2,1);
     }
 
     @Test

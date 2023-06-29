@@ -2,7 +2,7 @@ package com.ohgiraffers.webrpg.hunt.application.dto;
 
 
 import lombok.*;
-import org.springframework.stereotype.Service;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
