@@ -48,7 +48,6 @@ public class ChoiceMapController {
 
     @GetMapping ("{mapId}")
     public String monsterAppear(HttpSession session , @PathVariable String mapId, Model model) {
-        System.out.println(mapId);
         String userName = session.getAttribute("userName").toString();
         UserInfoDTO userInfoDTO = userApplicationService.getInfo(userApplicationService.getUserByName(userName));
 
